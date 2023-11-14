@@ -7,20 +7,25 @@ package br.com.cairu.joas;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 public class Conexao {
 
-    public Connection conectaBD() {
-        Connection con = null;
-
+    public static final String DRIVER = "com.mysql.jdbc.Driver";
+    public static final String URL = "jdbc:mysql://localhost:3806/projetobd";
+    public static final String USER = "root";
+    public static final String PASS = "";
+    
+    public static Connection conectaBD() {
+        
         try {
-            String url = "jdbc:mysql://localhost:3306/projetobd?user=root&password=root";
-            con = DriverManager.getConnection(url);
-        } catch (SQLException erro) {
-            JOptionPane.showConfirmDialog(null," ConexaoDAO"+ erro.getMessage());
+            Class.forName(DRIVER);
+            return DriverManager.getConnection(URL, USER, PASS);
+        } catch (Exception ex) {
+  
+            throw new RuntimeException("Erro ao tentar conexão com o banco de dados");
         }
-        return con;
+     
     }
+    
+    
 }

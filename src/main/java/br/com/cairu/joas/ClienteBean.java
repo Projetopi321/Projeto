@@ -22,7 +22,7 @@ public class ClienteBean {
     ClienteDAO dao = new ClienteDAO();
     
     public void inserir(){
-        
+    cliB = new ClienteBean(); 
     cliB.setNome(nome);
     cliB.setEmail(email);
     cliB.setEndereco(endereco);
