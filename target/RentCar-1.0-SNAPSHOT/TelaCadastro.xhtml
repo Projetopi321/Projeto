@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Projeto</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="TelaCadastro.css"/>
+    </h:head>
+    
+    <body>
+       <div class="card">
+           
+            <h2>Formulário de Cadastro</h2>
+           
+          <h:form>
+               <p:outputLabel for="login" value="Login:"/>
+               <p:inputText id="login" styleClass="custom-input" value="#{clienteBean.login}" required="true"/>   
+               
+               <p:outputLabel for="senha" value="Senha:"/>
+               <p:inputText id="senha" styleClass="custom-input" value="#{clienteBean.senha}" required="true"/>  
+              
+               <p:outputLabel for="nome" value="Nome:"/>
+               <p:inputText id="nome" styleClass="custom-input" value="#{clienteBean.nome}" required="true"/>  
+               
+               <p:outputLabel for="endereco"  value="Endereco:"/>
+               <p:inputText id="endereco"  styleClass="custom-input" value="#{clienteBean.endereco}" required="true"/>  
+               
+               <p:outputLabel for="uf" value="UF:"/>
+               <p:inputText id="uf" styleClass="custom-input" value="#{clienteBean.uf}" required="true"/>  
+               
+               <p:outputLabel for="telefone" value="Telefone:"/>
+               <p:inputText id="telefone" styleClass="custom-input" value="#{clienteBean.telefone}" required="true"/>  
+               
+               <p:outputLabel for="cpf" value="CPF:"/>
+               <p:inputText id="cpf" styleClass="custom-input" value="#{clienteBean.cpf}" required="true"/>  
+                        
+               <p:outputLabel for="email" value="Email:"/>
+               <p:inputText id="email" styleClass="custom-input" value="#{clienteBean.email}" required="true"/>  
+               
+
+               <h:outputText value="#{clienteBean.login}#{clienteBean.senha}#{clienteBean.nome}#{clienteBean.endereco}#{clienteBean.uf}#{clienteBean.telefone}#{clienteBean.cpf}#{clienteBean.email}"  />
+               
+              <p:commandButton  value="Salvar"  update="nome" styleClass="mt-3" action="#{clienteBean.inserir()}" />
+          </h:form>  
+        </div>
+          
+    </body>
+</html>

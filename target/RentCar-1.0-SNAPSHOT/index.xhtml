@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Projeto</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="index.css"/>
+    </h:head>
+    
+    <h:body>
+       <div class="card">
+           
+            <h2>Login</h2>
+           
+          <h:form>
+               <p:outputLabel for="login" value="Login:"/>
+               <p:inputText id="login" styleClass="custom-input" value="#{clienteBean.login}" required="true"/>   
+               
+               <p:outputLabel for="senha" value="Senha:"/>
+               <p:inputText id="senha" styleClass="custom-input" value="#{clienteBean.senha}" required="true"/>  
+               
+               <h:outputText value="#{clienteBean.login}#{clienteBean.senha}"  />
+               
+              <p:commandButton  value="Entrar" styleClass="mt-3" action="#{clienteBean.VerificaLogin()} <c:choose>
+         
+                  <c:when test = "${clienteBean.resultado == true}">
+            POSITIVO
+         </c:when>
+         
+         <c:when test = "${!clienteBean.resultado}">
+            NEGATIVO
+         </c:when>
+         
+         <c:otherwise>
+            No comment sir...
+         </c:otherwise>
+      </c:choose>" />
+              <p:linkButton outcome="TelaCadastro" value="Cadastrar" style="margin-right:20px;" styleClass="custom-input">
+
+              </p:linkButton>
+              
+          </h:form>  
+            
+            
+
+            
+        </div>
+          
+    </h:body>
+</html>

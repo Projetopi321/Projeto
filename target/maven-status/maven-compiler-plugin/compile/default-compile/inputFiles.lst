@@ -1,5 +1,4 @@
-C:\Users\alanb\Desktop\ProjetoPi\Projeto\src\main\java\br\com\cairu\joas\TesteConexao.java
-C:\Users\alanb\Desktop\ProjetoPi\Projeto\src\main\java\br\com\cairu\joas\ClienteBean.java
-C:\Users\alanb\Desktop\ProjetoPi\Projeto\src\main\java\br\com\cairu\joas\Conexao.java
-C:\Users\alanb\Desktop\ProjetoPi\Projeto\src\main\java\br\com\cairu\joas\Cliente.java
-C:\Users\alanb\Desktop\ProjetoPi\Projeto\src\main\java\br\com\cairu\joas\ClienteDAO.java
+C:\Users\alanb\Desktop\ProjetoPi\Projeto\src\main\java\util\ConnectionFactory.java
+C:\Users\alanb\Desktop\ProjetoPi\Projeto\src\main\java\model\ClienteBean.java
+C:\Users\alanb\Desktop\ProjetoPi\Projeto\src\main\java\model\Cliente.java
+C:\Users\alanb\Desktop\ProjetoPi\Projeto\src\main\java\controller\ClienteDAO.java

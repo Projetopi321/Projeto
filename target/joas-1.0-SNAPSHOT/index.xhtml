@@ -6,29 +6,36 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      >
-    <head>
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
         <title>Projeto</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+        <link rel="stylesheet" href="Index.css"/>
+        <h:outputStylesheet name="Index.css" />
+    </h:head>
+    
     <body>
-         <h2>Formulário de Login</h2>
-
-    <h:form>
-        <h:outputLabel for="nome">Usuário:</h:outputLabel>
-        <h:inputText id="nome" value="#{clienteBean.nome}" required="true" /><br/>
-
-        <h:outputLabel for="email">Email:</h:outputLabel>
-        <h:inputText id="email" value="#{clienteBean.email}" required="true" /><br/>
-        
-        <h:outputLabel for="endereco">Endereco:</h:outputLabel>
-        <h:inputText id="endereco" value="#{clienteBean.endereco}" required="true" /><br/>
-        
-        <h:outputText value="#{clienteBean.nome}#{clienteBean.email}#{clienteBean.endereco}"/>
-
-        <h:commandButton value="Salvar" action="#{clienteBean.inserir()}" />
-    </h:form>
+       <div class="card">
+           
+                    <h2>Formulário de Login</h2>
+           
+          <h:form>
+               <p:outputLabel for="nome" value="Usuário"/>
+               <p:inputText id="nome" styleClass="custom-input" value="#{clienteBean.nome}" required="true"/>   
+               <br></br>
+               <p:outputLabel for="email" value="Email:"/>
+               <p:inputText id="email" styleClass="custom-input" value="#{clienteBean.email}" required="true"/>  
+               <br></br>
+               <p:outputLabel for="endereco"  value="Endereco:"/>
+               <p:inputText id="endereco"  styleClass="custom-input" value="#{clienteBean.endereco}" required="true"/>  
+               
+               <h:outputText value="#{clienteBean.nome}#{clienteBean.email}#{clienteBean.endereco}"  />
+               
+              <p:commandButton  value="Salvar"  update="nome" styleClass="mt-3" action="#{clienteBean.inserir()}" />
+          </h:form>  
+        </div>
+          
     </body>
 </html>
