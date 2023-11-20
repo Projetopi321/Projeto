@@ -10,36 +10,48 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    <head>
+    <h:head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+        <link rel="stylesheet" href="TelaTabelaClientes.css"/>
+    </h:head>
     <body>
         <div class="card">
             <h:form id="form">
-                <p:dataTable id="tbCliente" var="cliente" value="#{clienteBean.obterLista()}" rowKey="#{cliente.id}" selectionMode="single">
+                <p:dataTable id="tbCliente" var="cliente" value="#{clienteBean.obterLista()}" rowKey="#{cliente.id}" selection="${clienteBean.itemSelecionado}" selectionMode="single">
                     <f:facet name="header">
                         <h:outputLabel><h1>TABELA DE CLIENTES</h1></h:outputLabel>
                     </f:facet>
-                    <p:column headerText="Nome" width="100px">  <!-- CABEÇALHO DE CADA COLUNA-->
-                        <h:outputText value="#{cliente.nome}" />  <!-- CONTEÚDO DE CADA COLUNA -->
+                    <p:column headerText="Seleção" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <input type="radio" name="radio2" value="${cliente.id}" class="content"/>                        
                     </p:column>
-                    <p:column headerText="Endereço" width="200px">
-                        <h:outputText value="#{cliente.endereco}" />
+                    <p:column headerText="Id" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{cliente.id}" class="content"/>  <!-- CONTEÚDO DE CADA COLUNA -->
                     </p:column>
-                    <p:column headerText="UF" width="100px">
-                        <h:outputText value="#{cliente.uf}" />
+                    <p:column headerText="Nome" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{cliente.nome}" class="content"/>  <!-- CONTEÚDO DE CADA COLUNA -->
                     </p:column>
-                    <p:column headerText="Telefone" width="100px">
-                        <h:outputText value="#{cliente.telefone}" />
+                    <p:column headerText="Endereço" width="200px" class="head">
+                        <h:outputText value="#{cliente.endereco}" class="content"/>
                     </p:column>
-                    <p:column headerText="CPF" width="200px">
-                        <h:outputText value="#{cliente.cpf}" />
+                    <p:column headerText="UF" width="100px" class="head">
+                        <h:outputText value="#{cliente.uf}" class="content"/>
                     </p:column>
-                    <p:column headerText="Email" width="100px">
-                        <h:outputText value="#{cliente.email}" />
+                    <p:column headerText="Telefone" width="100px" class="head">
+                        <h:outputText value="#{cliente.telefone}" class="content"/>
                     </p:column>
-                </p:dataTable>        
+                    <p:column headerText="CPF" width="200px" class="head">
+                        <h:outputText value="#{cliente.cpf}" class="content"/>
+                    </p:column>
+                    <p:column headerText="Email" width="100px" class="head">
+                        <h:outputText value="#{cliente.email}" class="content"/>
+                    </p:column>
+
+                </p:dataTable>  
+                <div class="btns">
+                    <p:commandButton value="Alterar" styleClass="btn"></p:commandButton>
+                    <p:commandButton value="Deletar" styleClass="btn"></p:commandButton>
+                </div>  
             </h:form>
         </div>
     </body>

@@ -4,8 +4,11 @@ import controller.ClienteDAO;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -24,8 +27,22 @@ public class ClienteBean {
     private String telefone;
     private String cpf;
     private String email;
-    private boolean resultado;    
+    private boolean resultado;
     ArrayList<ClienteBean> lista = new ArrayList<>();
+    private ClienteBean itemSelecionado;
+
+    public ClienteBean getItemSelecionado() {
+        return itemSelecionado;
+    }
+
+    public void setItemSelecionado(ClienteBean itemSelecionado) {
+        this.itemSelecionado = itemSelecionado;
+    }
+
+    public void onRowSelect(SelectEvent<ClienteBean> event) {
+        FacesMessage msg = new FacesMessage("Item Selecionado", event.getObject().getLogin());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 
     ClienteBean cliB;
     ClienteDAO clienteDao = new ClienteDAO();
@@ -65,11 +82,12 @@ public class ClienteBean {
 
         cliB.setLogin(login);
         cliB.setSenha(senha);
-        
+
         resultado = clienteDao.verificaLogin(cliB);
-         
+
         return resultado;
     }
+
     // METÓDO PARA CHAMAR OS DADOS DO BANCO.
     public ArrayList<ClienteBean> obterLista() {
         lista = clienteDao.obterClientes(); // CRIANDO A LISTA PARA MANIPULAR OS DADOS
