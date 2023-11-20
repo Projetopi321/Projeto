@@ -1,6 +1,9 @@
 package model;
 
 import controller.ClienteDAO;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -12,32 +15,41 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class ClienteBean {
 
-  private String login;
-  private  String senha;
-  private  String nome;
-  private  String endereco;
-  private  String uf;
-  private  String telefone;
-  private  String cpf;
-  private  String email;
-  private boolean resultado;
+    private int id;
+    private String login;
+    private String senha;
+    private String nome;
+    private String endereco;
+    private String uf;
+    private String telefone;
+    private String cpf;
+    private String email;
+    private boolean resultado;    
+    ArrayList<ClienteBean> lista = new ArrayList<>();
 
-   ClienteBean cliB;
-   ClienteDAO clienteDao = new ClienteDAO();
-    
-    public void inserir(){
-    cliB = new ClienteBean(); 
-    cliB.setLogin(login);
-    cliB.setSenha(senha);
-    cliB.setNome(nome);
-    cliB.setEmail(email);
-    cliB.setEndereco(endereco);
-    cliB.setUf(uf);
-    cliB.setTelefone(telefone);
-    cliB.setCpf(cpf);
-    cliB.setEmail(email);
-    clienteDao.salvar(cliB);
-    
+    ClienteBean cliB;
+    ClienteDAO clienteDao = new ClienteDAO();
+
+    public void inserir() {
+        cliB = new ClienteBean();
+        cliB.setLogin(login);
+        cliB.setSenha(senha);
+        cliB.setNome(nome);
+        cliB.setEmail(email);
+        cliB.setEndereco(endereco);
+        cliB.setUf(uf);
+        cliB.setTelefone(telefone);
+        cliB.setCpf(cpf);
+        cliB.setEmail(email);
+        clienteDao.salvar(cliB);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public boolean isResultado() {
@@ -47,20 +59,23 @@ public class ClienteBean {
     public void setResultado(boolean resultado) {
         this.resultado = resultado;
     }
-    
-    public boolean VerificaLogin(){
-    cliB = new ClienteBean(); 
-    
-    cliB.setLogin(login);
-    cliB.setSenha(senha);
-    
 
-    resultado = clienteDao.verificaLogin(cliB);
-    
-    return resultado;
+    public boolean verificaLogin() {
+        cliB = new ClienteBean();
 
+        cliB.setLogin(login);
+        cliB.setSenha(senha);
+        
+        resultado = clienteDao.verificaLogin(cliB);
+         
+        return resultado;
     }
-    
+    // METÓDO PARA CHAMAR OS DADOS DO BANCO.
+    public ArrayList<ClienteBean> obterLista() {
+        lista = clienteDao.obterClientes(); // CRIANDO A LISTA PARA MANIPULAR OS DADOS
+        return lista;       // RETORNANDO PRO FRONT
+    }
+
     public String getLogin() {
         return login;
     }
@@ -84,7 +99,7 @@ public class ClienteBean {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
     public String getEndereco() {
         return endereco;
     }
@@ -123,5 +138,5 @@ public class ClienteBean {
 
     public void setEmail(String email) {
         this.email = email;
-    }  
+    }
 }

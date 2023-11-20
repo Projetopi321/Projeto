@@ -46,9 +46,9 @@ and open the template in the editor.
                <p:inputText id="email" styleClass="custom-input" value="#{clienteBean.email}" required="true"/>  
                
 
-               <h:outputText value="#{clienteBean.login}#{clienteBean.senha}#{clienteBean.nome}#{clienteBean.endereco}#{clienteBean.uf}#{clienteBean.telefone}#{clienteBean.cpf}#{clienteBean.email}"  />
+<!--               <h:outputText value="#{clienteBean.login}#{clienteBean.senha}#{clienteBean.nome}#{clienteBean.endereco}#{clienteBean.uf}#{clienteBean.telefone}#{clienteBean.cpf}#{clienteBean.email}"  />-->
                
-              <p:commandButton  value="Salvar"  update="nome" styleClass="mt-3" action="#{clienteBean.inserir()}" />
+              <p:commandButton  value="Salvar" update="nome" styleClass="mt-3" action="#{clienteBean.inserir()}" />
           </h:form>  
         </div>
           
