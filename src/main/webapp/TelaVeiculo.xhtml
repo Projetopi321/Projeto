@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="style/TelaTabelaClientes.css"/>
+    </h:head>
+    <body>
+        <div class="card">
+            <h:form id="form">
+                <p:dataTable id="tbVeiculo" var="veiculo" value="#{veiculoBean.obterLista()}" rowKey="#{veiculo.id}" selection="${veiculoBean.itemSelecionado}" selectionMode="single">
+                    <f:facet name="header">
+                        <h:outputLabel><h1>TABELA DE VEÍCULOS</h1></h:outputLabel>
+                    </f:facet>
+                    <p:column headerText="Seleção" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <input type="radio" name="radio2" value="${veiculo.id}" class="content"/>                        
+                    </p:column>
+                    <p:column headerText="Id" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{veiculo.id}" class="content"/>  <!-- CONTEÚDO DE CADA COLUNA -->
+                    </p:column>
+                    <p:column headerText="Fabricante" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{veiculo.fabricante}" class="content"/>  <!-- CONTEÚDO DE CADA COLUNA -->
+                    </p:column>
+                    <p:column headerText="Modelo" width="200px" class="head">
+                        <h:outputText value="#{veiculo.modelo}" class="content"/>
+                    </p:column>
+                    <p:column headerText="Placa" width="100px" class="head">
+                        <h:outputText value="#{veiculo.placa}" class="content"/>
+                    </p:column>
+                    <p:column headerText="Ano do Modelo" width="100px" class="head">
+                        <h:outputText value="#{veiculo.anoModelo}" class="content"/>
+                    </p:column>
+                    <p:column headerText="Quantidade de Portas" width="200px" class="head">
+                        <h:outputText value="#{veiculo.qtdPortas}" class="content"/>
+                    </p:column>                 
+                    <p:column headerText="Acessórios" width="200px" class="head">
+                        <h:outputText value="#{veiculo.acessorios}" class="content"/>
+                    </p:column>
+
+
+                </p:dataTable>  
+                <div class="btns">
+                    <p:linkButton outcome="TelaCadastroVeiculo" value="Cadastrar" style="margin-right:20px;" styleClass="btn"></p:linkButton>
+                    <p:commandButton value="Alterar" styleClass="btn"></p:commandButton>
+                    <p:commandButton value="Deletar" styleClass="btn"></p:commandButton>
+                </div>  
+            </h:form>
+        </div>
+    </body>
+</html>

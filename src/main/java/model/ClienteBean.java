@@ -1,9 +1,7 @@
 package model;
 
-import controller.ClienteDAO;
-import java.sql.ResultSet;
+import controller.ClienteController;
 import java.util.ArrayList;
-import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -45,7 +43,7 @@ public class ClienteBean {
     }
 
     ClienteBean cliB;
-    ClienteDAO clienteDao = new ClienteDAO();
+    ClienteController clienteDao = new ClienteController();
 
     public void inserir() {
         cliB = new ClienteBean();
@@ -61,7 +59,23 @@ public class ClienteBean {
         clienteDao.salvar(cliB);
     }
 
-    public int getId() {
+    public boolean verificaLogin() {
+        cliB = new ClienteBean();
+
+        cliB.setLogin(login);
+        cliB.setSenha(senha);
+
+        resultado = clienteDao.verificaLogin(cliB);
+
+        return resultado;
+    }
+   
+    public ArrayList<ClienteBean> obterLista() {
+        lista = clienteDao.obterClientes(); // CRIANDO A LISTA PARA MANIPULAR OS DADOS
+        return lista;       // RETORNANDO PRO FRONT
+    }
+    
+      public int getId() {
         return id;
     }
 
@@ -75,23 +89,6 @@ public class ClienteBean {
 
     public void setResultado(boolean resultado) {
         this.resultado = resultado;
-    }
-
-    public boolean verificaLogin() {
-        cliB = new ClienteBean();
-
-        cliB.setLogin(login);
-        cliB.setSenha(senha);
-
-        resultado = clienteDao.verificaLogin(cliB);
-
-        return resultado;
-    }
-
-    // METÓDO PARA CHAMAR OS DADOS DO BANCO.
-    public ArrayList<ClienteBean> obterLista() {
-        lista = clienteDao.obterClientes(); // CRIANDO A LISTA PARA MANIPULAR OS DADOS
-        return lista;       // RETORNANDO PRO FRONT
     }
 
     public String getLogin() {
@@ -157,4 +154,9 @@ public class ClienteBean {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    
+    
+    
+    
 }

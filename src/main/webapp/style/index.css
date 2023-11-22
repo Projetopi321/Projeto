@@ -22,6 +22,7 @@ body{
 
 .custom-input {
     margin: 10px 0px 10px 0px;
+    outline: none;
     width: 100%
 }
 

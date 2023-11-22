@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
     <h:head>
+        
         <title>Projeto</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" href="index.css"/>
+        <link rel="stylesheet" href="style/index.css"/>
     </h:head>
 
     <h:body>
@@ -24,22 +27,24 @@
                 <p:outputLabel for="senha" value="Senha:"/>
                 <p:inputText id="senha" styleClass="custom-input" value="#{clienteBean.senha}" required="true"/>  
 
-                <p:commandButton  value="Entrar" styleClass="mt-3" action="#{clienteBean.verificaLogin()}" update="@form"></p:commandButton>
-
                 <c:choose>
                     <c:when test = "${clienteBean.resultado}">  <!-- FAZENDO A REGRA DE NEGÓCIO DE LOGIN - AUTORIZANDO AO ENCONTRAR NO BANCO DE DADOS-->
-                        <p:outputLabel>Aprovado!</p:outputLabel>                         
+                        <p:outputLabel>Login Aprovado !!</p:outputLabel> 
+                         <p:linkButton outcome="TelaPrincipal" value="Ir para pagina principal" style="margin-right:20px;" styleClass="custom-input"></p:linkButton>    
+                          <p></p>
+                         <p:linkButton outcome="index" value="Alterar Usuário" style="margin-right:20px;" styleClass="custom-input"></p:linkButton>  
                     </c:when>
-                    <c:when test = "${!clienteBean.resultado}"> <!-- NEGANDO AO NÃO ENCONTRAR NO BANCO DE DADOS -->
-                        <p:outputLabel>Negado!</p:outputLabel>
+                    <c:when test = "${!clienteBean.resultado }"> <!-- NEGANDO AO NÃO ENCONTRAR NO BANCO DE DADOS -->
+                        <p:outputLabel >Digite o seu Login e Senha</p:outputLabel>
+                       <p:commandButton  value="Entrar" styleClass="mt-3" action="#{clienteBean.verificaLogin()}"  update="@form"></p:commandButton>
+                        <p></p>
+                       <p:linkButton outcome="TelaCadastroUsuario" value="Cadastrar" style="margin-right:20px;" styleClass="custom-input"></p:linkButton>
+                        <p></p>
                     </c:when>
                 </c:choose>
 
                 <p></p>
-                <p:linkButton outcome="TelaCadastro" value="Cadastrar" style="margin-right:20px;" styleClass="custom-input">
-                </p:linkButton>
-                <p:linkButton outcome="TelaTabelaClientes" value="Clientes Cadastrados" style="margin-right:20px;" styleClass="custom-input">
-                </p:linkButton>  <!-- ADICIONEI UM BOTÃO PARA VER A LISTA DE CLIENTES. PROVISÓRIO -->
+                
             </h:form> 
         </div>
 
