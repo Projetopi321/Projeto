@@ -28,6 +28,8 @@ public class AluguelBean implements Serializable {
    int idCliente;
    float valorPago;
    String dataAluguelString;
+   String dataEntregaString;
+
    Date dataAluguel;
    Date dataEntrega;
    String entregue;
@@ -50,22 +52,24 @@ public class AluguelBean implements Serializable {
         alugB = new AluguelBean();
                 
         String dataString = dataAluguelString; 
+        String dataString2 = dataEntregaString;
+        
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");        
         Date dataFormatada = null;
+        Date dataFormatada2 = null;
             
         try {
              dataFormatada = sdf.parse(dataString);
+             dataFormatada2 = sdf.parse(dataString2);
          } catch (ParseException ex) {
              System.out.println("ERRO AO CONVERTER A DATA");
-         }
-        
-        System.out.println("DATA NO BEAN = " + dataFormatada);
+         }        
                    
         alugB.setId(id);
         alugB.setVeiculo(veiculo);
         alugB.setCliente(cliente);
         alugB.setDataAluguel(dataFormatada);
-        alugB.setDataEntrega(dataFormatada);
+        alugB.setDataEntrega(dataFormatada2);
         alugB.setEntregue(entregue);
         alugB.setObservacao(observacao);
         alugB.setValorPago(valorPago);
@@ -76,13 +80,12 @@ public class AluguelBean implements Serializable {
         alugB.getVeiculo().setId(getIdVeiculo());
         alugB.getCliente().setId(getIdCliente());
         
-
+        alugB.setDataEntregaString(dataEntregaString);
         alugB.setDataAluguelString(dataAluguelString);
         
         aluguelController.salvar(alugB);
     }
-    
-
+   
         public AluguelBean getItemSelecionado() {
         return itemSelecionado;
     }
@@ -99,6 +102,14 @@ public class AluguelBean implements Serializable {
       public ArrayList<AluguelBean> obterLista() {
         lista = aluguelController.obterAlugueis();
         return lista;       
+    }
+         
+    public String getDataEntregaString() {
+        return dataEntregaString;
+    }
+
+    public void setDataEntregaString(String dataEntregaString) {
+        this.dataEntregaString = dataEntregaString;
     }
       
     public String getDataAluguelString() {
@@ -124,8 +135,6 @@ public class AluguelBean implements Serializable {
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
-    
-      
       
     public int getId() {
         return id;

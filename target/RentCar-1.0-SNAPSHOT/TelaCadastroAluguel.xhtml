@@ -23,12 +23,12 @@
 
                 <p:outputLabel for="idCliente" value="Id Do Cliente:"/>
                 <p:inputText id="idCliente" styleClass="custom-input" value="#{aluguelBean.idCliente}" required="true"/>
-
-                <p:outputLabel for="dataEntrega" value="Data de Entregue:"/>
-                <p:inputText id="dataEntrega" type="date" styleClass="custom-input" value="#{aluguelBean.dataAluguelString}" required="true"/>
-
+                
                 <p:outputLabel for="dataAluguel" value="Data do Aluguel:"/>
                 <p:inputText id="dataAluguel" type="date" styleClass="custom-input" value="#{aluguelBean.dataAluguelString}" required="true"/>
+
+                <p:outputLabel for="dataEntrega" value="Data de Entregue:"/>
+                <p:inputText id="dataEntrega" type="date" styleClass="custom-input" value="#{aluguelBean.dataEntregaString}" required="true"/>
 
                 <p:outputLabel for="observacao" value="Observação:"/>
                 <p:inputText id="observacao" styleClass="custom-input" value="#{aluguelBean.observacao}" required="true"/>
