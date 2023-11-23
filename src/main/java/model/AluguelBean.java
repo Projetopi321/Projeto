@@ -2,6 +2,9 @@ package model;
 
 import java.util.Date;
 import controller.AluguelController;
+import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -16,15 +19,22 @@ import org.primefaces.event.SelectEvent;
 
 @ManagedBean
 @ViewScoped
-public class AluguelBean {
+public class AluguelBean implements Serializable {
+    
+    
+  
    int id;
-   VeiculoBean veiculo;
+   int idVeiculo;
+   int idCliente;
+   float valorPago;
+   String dataAluguelString;
    Date dataAluguel;
    Date dataEntrega;
-   ClienteBean cliente;
    String entregue;
    String observacao;
-   float valorPago;
+   VeiculoBean veiculo;
+   ClienteBean cliente; 
+
    ArrayList<AluguelBean> lista = new ArrayList<>();
    private AluguelBean itemSelecionado;
 
@@ -35,24 +45,44 @@ public class AluguelBean {
    
     AluguelBean alugB;
     AluguelController aluguelController = new AluguelController();
-    
-    
 
     public void inserir() {
         alugB = new AluguelBean();
+                
+        String dataString = dataAluguelString; 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");        
+        Date dataFormatada = null;
+            
+        try {
+             dataFormatada = sdf.parse(dataString);
+         } catch (ParseException ex) {
+             System.out.println("ERRO AO CONVERTER A DATA");
+         }
         
+        System.out.println("DATA NO BEAN = " + dataFormatada);
+                   
         alugB.setId(id);
         alugB.setVeiculo(veiculo);
-        alugB.setDataAluguel(dataAluguel);
-        alugB.setDataEntrega(dataEntrega);
         alugB.setCliente(cliente);
+        alugB.setDataAluguel(dataFormatada);
+        alugB.setDataEntrega(dataFormatada);
         alugB.setEntregue(entregue);
         alugB.setObservacao(observacao);
         alugB.setValorPago(valorPago);
         
+        alugB.setIdCliente(cliente.getId());
+        alugB.setIdVeiculo(veiculo.getId());
+        
+        alugB.getVeiculo().setId(getIdVeiculo());
+        alugB.getCliente().setId(getIdCliente());
+        
+
+        alugB.setDataAluguelString(dataAluguelString);
+        
         aluguelController.salvar(alugB);
     }
     
+
         public AluguelBean getItemSelecionado() {
         return itemSelecionado;
     }
@@ -67,10 +97,36 @@ public class AluguelBean {
     }
     
       public ArrayList<AluguelBean> obterLista() {
-        lista = aluguelController.obterAlugueis(); // CRIANDO A LISTA PARA MANIPULAR OS DADOS
-        return lista;       // RETORNANDO PRO FRONT
+        lista = aluguelController.obterAlugueis();
+        return lista;       
     }
-   
+      
+    public String getDataAluguelString() {
+        return dataAluguelString;
+    }
+
+    public void setDataAluguelString(String dataAluguelString) {
+        this.dataAluguelString = dataAluguelString;
+    }
+       
+    public int getIdVeiculo() {
+        return idVeiculo;
+    }
+
+    public void setIdVeiculo(int idVeiculo) {
+        this.idVeiculo = idVeiculo;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+    
+      
+      
     public int getId() {
         return id;
     }
@@ -133,6 +189,10 @@ public class AluguelBean {
 
     public void setValorPago(float valorPago) {
         this.valorPago = valorPago;
+    }
+
+    private String toString(Date dataAluguel) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
    
 }

@@ -1,12 +1,14 @@
 package model;
 
 import controller.VeiculoController;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import javax.faces.application.FacesMessage;
+import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -21,6 +23,24 @@ public class VeiculoBean {
     private String placa;
     private String fabricante;
     private String modelo;
+    private Date dataTeste;
+    private String dataString;
+
+    public String getDataString() {
+        return dataString;
+    }
+
+    public void setDataString(String dataString) {
+        this.dataString = dataString;
+    }
+
+    public Date getDataTeste() {
+        return dataTeste;
+    }
+
+    public void setDataTeste(Date dataTeste) {
+        this.dataTeste = dataTeste;
+    }
     private int anoModelo;
     private int qtdPortas;
     private String acessorios;
@@ -37,8 +57,8 @@ public class VeiculoBean {
     
     VeiculoBean veiculoB;
     VeiculoController veiculoDao = new VeiculoController();
-
-    public void inserir() {
+    
+    public void inserir() { 
         veiculoB = new VeiculoBean();
         veiculoB.setPlaca(placa);
         veiculoB.setFabricante(fabricante);

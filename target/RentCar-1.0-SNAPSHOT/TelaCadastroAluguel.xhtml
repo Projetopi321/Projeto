@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Projeto</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="style/TelaCadastro.css"/>
+    </h:head>
+
+    <body>
+        <div class="card">
+
+            <h2>Cadastro De Alugueis</h2>
+
+            <h:form>
+
+                <p:outputLabel for="idVeiculo" value="Id do Veiculo:"/>
+                <p:inputText id="idVeiculo" styleClass="custom-input" value="#{aluguelBean.idVeiculo}" required="true"/>               
+
+                <p:outputLabel for="idCliente" value="Id Do Cliente:"/>
+                <p:inputText id="idCliente" styleClass="custom-input" value="#{aluguelBean.idCliente}" required="true"/>
+
+                <p:outputLabel for="dataEntrega" value="Data de Entregue:"/>
+                <p:inputText id="dataEntrega" type="date" styleClass="custom-input" value="#{aluguelBean.dataAluguelString}" required="true"/>
+
+                <p:outputLabel for="dataAluguel" value="Data do Aluguel:"/>
+                <p:inputText id="dataAluguel" type="date" styleClass="custom-input" value="#{aluguelBean.dataAluguelString}" required="true"/>
+
+                <p:outputLabel for="observacao" value="Observação:"/>
+                <p:inputText id="observacao" styleClass="custom-input" value="#{aluguelBean.observacao}" required="true"/>
+
+                <p:outputLabel for="valorPago" value="Valor Pago:"/>
+                <p:inputText id="valorPago" styleClass="custom-input" value="#{aluguelBean.valorPago}" required="true"/>
+
+                <p:outputLabel for="entregue" value="Foi Entregue?"/>
+                <p:inputText id="entregue" styleClass="custom-input" value="#{aluguelBean.entregue}" required="true"/>
+
+                <p:commandButton  value="Salvar" update="@form" styleClass="mt-3" action="#{aluguelBean.inserir()}" />
+            </h:form>  
+        </div>          
+    </body>
+</html>

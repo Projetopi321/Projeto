@@ -26,7 +26,6 @@ public class AluguelController {
     ArrayList<AluguelBean> lista = new ArrayList<>();
     boolean resultado;
     
-    
      public boolean salvar(AluguelBean aluguel) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -70,7 +69,7 @@ public class AluguelController {
          } catch (ParseException ex) {
              System.out.println("Erro ao Converter a data");
          }
-        
+               
         statement.setInt(1, aluguel.getVeiculo().getId());
         statement.setDate(2, new java.sql.Date(dataFormatada.getTime()));
         statement.setDate(3, new java.sql.Date(dataFormatada2.getTime()));
@@ -140,8 +139,7 @@ public class AluguelController {
     
     public ArrayList<AluguelBean> obterAlugueis() {
         connection = new ConnectionFactory().getConnection(); // CRIANDO A CONEXÃO
-
-       
+      
         String url = "SELECT * FROM aluguel"; // STRING DA CONSULTA SQL
 
         try {
@@ -154,11 +152,9 @@ public class AluguelController {
                 
             ClienteController clienteController = new ClienteController();
             VeiculoController veiculoController = new VeiculoController();
-            
-            
+                    
             algBean.getCliente().setNome(clienteController.getById(rs.getInt("idCliente")).getNome());
-            
- 
+             
             algBean.setId(rs.getInt("idAluguel"));
             algBean.getCliente().setId(rs.getInt("idCliente"));
             algBean.getVeiculo().setId(rs.getInt("idVeiculo"));
@@ -176,8 +172,7 @@ public class AluguelController {
         }
         return lista;  //RETORNANDO A LISTA PARA A CLASSE BEANS.
     }
-    
-            
+                
      public void removeById (int Id) {
         
          String sql = "DELETE FROM aluguel WHERE id = ?";
