@@ -35,6 +35,7 @@ public class AluguelBean implements Serializable {
     String observacao;
     VeiculoBean veiculo;
     ClienteBean cliente;
+    
 
     ArrayList<AluguelBean> lista = new ArrayList<>();
     private AluguelBean itemSelecionado;
@@ -86,6 +87,10 @@ public class AluguelBean implements Serializable {
 
         aluguelController.salvar(alugB);
     }
+    public void deletar(int id){
+        AluguelController dao = new AluguelController();
+        dao.removeById(id);
+    }
 
     public AluguelBean getItemSelecionado() {
         return itemSelecionado;
@@ -108,8 +113,10 @@ public class AluguelBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
-    public ArrayList<AluguelBean> obterLista() {
-        lista = aluguelController.obterAlugueis();
+    public ArrayList<AluguelBean> obterLista() throws ParseException {
+        
+        
+        lista = aluguelController.obterAlugueis();        
         return lista;
     }
 
@@ -223,10 +230,6 @@ public class AluguelBean implements Serializable {
 
     public void setValorPago(float valorPago) {
         this.valorPago = valorPago;
-    }
-
-    private String toString(Date dataAluguel) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
