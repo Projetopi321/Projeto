@@ -49,7 +49,7 @@ public class AluguelController {
             
         } else {
             
-        sql = "INSERT INTO aluguel (idVeiculo, dataAluguel, dataEntrega, idCliente, entregue, observacao, valorPago) VALUES (?, ?, ?, ?, ?, ?, ?)";    
+        sql = "INSERT INTO aluguel (idVeiculo, dataAluguel, dataEntrega, idCliente, entregue, observacao, valorPago, cpfCliente, nomeCliente, placaVeiculo) VALUES (?,?,?,?,?,?,?,?,?,?)";    
                  
         statement = connection.prepareStatement(sql);
      
@@ -77,6 +77,9 @@ public class AluguelController {
         statement.setString(5, aluguel.getEntregue());
         statement.setString(6, aluguel.getObservacao());
         statement.setFloat(7, aluguel.getValorPago());
+        statement.setString(8, aluguel.getCpfCliente());
+        statement.setString(9, aluguel.getNomeCliente());
+        statement.setString(10, aluguel.getPlacaVeiculo());
         
         statement.execute();
         
@@ -156,8 +159,9 @@ public class AluguelController {
             algBean.getCliente().setNome(clienteController.getById(rs.getInt("idCliente")).getNome());
              
             algBean.setId(rs.getInt("idAluguel"));
-            algBean.getCliente().setId(rs.getInt("idCliente"));
-            algBean.getVeiculo().setId(rs.getInt("idVeiculo"));
+            algBean.getVeiculo().setPlaca(rs.getString("placaVeiculo"));
+            algBean.getCliente().setNome(rs.getString("nomeCliente"));
+            
             algBean.setEntregue(rs.getString("entregue"));
             algBean.setObservacao(rs.getString("observacao"));
             algBean.setValorPago(rs.getFloat("valorPago"));

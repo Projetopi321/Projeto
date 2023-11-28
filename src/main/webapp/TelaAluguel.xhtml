@@ -11,45 +11,43 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="style/TelaTabelaClientes.css"/>
     </h:head>
-    <body>
+    <h:body style="background: -webkit-linear-gradient(left, #054A74, #85cdfa, #054A74);">
         <div class="card">
             <h:form id="form">
                 <p:dataTable id="tbAluguel" var="aluguel" value="#{aluguelBean.obterLista()}" rowKey="#{aluguel.id}" selection="${aluguelBean.itemSelecionado}" selectionMode="single">
                     <f:facet name="header">
                         <h:outputLabel><h1>TABELA DE ALUGUÉIS</h1></h:outputLabel>
                     </f:facet>
-                    <p:column headerText="Seleção" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
-                        <input type="radio" name="radio2" value="${aluguel.id}" class="content"/>                        
+                    <p:column headerText="Seleção" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <input type="radio" name="radio2" value="${aluguel.id}" class="content" style="background: #054A74; color: white;"/>                        
                     </p:column>
-                    <p:column headerText="Id do Aluguel" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
-                        <h:outputText value="#{aluguel.id}" class="content"/>  <!-- CONTEÚDO DE CADA COLUNA -->
+                    <p:column headerText="Cliente:" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{aluguel.getCliente().getNome()}" class="content" style="background: #054A74; color: white;"/>  <!-- CONTEÚDO DE CADA COLUNA -->
                     </p:column>
-                    <p:column headerText="Id Do Veiculo" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
-                        <h:outputText value="#{aluguel.getVeiculo().getId()}" class="content"/>  <!-- CONTEÚDO DE CADA COLUNA -->
-                    </p:column> 
-                    <p:column headerText="Id Do Cliente" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
-                        <h:outputText value="#{aluguel.getCliente().getId()}" class="content"/>  <!-- CONTEÚDO DE CADA COLUNA -->
-                    </p:column> 
-                    <p:column headerText="Nome Do Cliente" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
-                        <h:outputText value="#{aluguel.getCliente().getNome()}" class="content"/>  <!-- CONTEÚDO DE CADA COLUNA -->
-                    </p:column> 
-                    <p:column headerText="Entregue" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
-                        <h:outputText value="#{aluguel.entregue}" class="content"/>  <!-- CONTEÚDO DE CADA COLUNA -->
+                    <p:column headerText="Placa: " class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{aluguel.getVeiculo().getPlaca()}" class="content" style="background: #054A74; color: white;"/>  <!-- CONTEÚDO DE CADA COLUNA -->
+                    </p:column>                                       
+                    <p:column headerText="Data Aluguel" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{aluguel.getDataAluguel()}" class="content" style="background: #054A74; color: white;"/>  <!-- CONTEÚDO DE CADA COLUNA -->
                     </p:column>
-                    <p:column headerText="Valor Pago" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
-                        <h:outputText value="#{aluguel.valorPago}" class="content"/>  <!-- CONTEÚDO DE CADA COLUNA -->
+                    
+                    <p:column headerText="Entregue" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{aluguel.entregue}" class="content" style="background: #054A74; color: white;"/>  <!-- CONTEÚDO DE CADA COLUNA -->
                     </p:column>
-                    <p:column headerText="Observação" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
-                        <h:outputText value="#{aluguel.observacao}" class="content"/>  <!-- CONTEÚDO DE CADA COLUNA -->
+                    <p:column headerText="Valor Pago" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{aluguel.valorPago}" class="content" style="background: #054A74; color: white;"/>  <!-- CONTEÚDO DE CADA COLUNA -->
+                    </p:column>
+                    <p:column headerText="Observação" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{aluguel.observacao}" class="content" style="background: #054A74; color: white;"/>  <!-- CONTEÚDO DE CADA COLUNA -->
                     </p:column>
 
                 </p:dataTable>  
                 <div class="btns">
-                    <p:linkButton outcome="TelaCadastroAluguel" value="Cadastrar" style="margin-right:20px;" styleClass="btn"></p:linkButton>
-                    <p:commandButton value="Alterar" styleClass="btn"></p:commandButton>
-                    <p:commandButton value="Deletar" styleClass="btn"></p:commandButton>
+                    <p:linkButton outcome="TelaCadastroAluguel" value="Cadastrar" style="margin-right:20px; background:#F44B2A" styleClass="btn" ></p:linkButton>
+                    <p:commandButton value="Alterar" styleClass="btn" style="background:#F44B2A; margin-right: 1em"></p:commandButton>
+                    <p:commandButton value="Deletar" styleClass="btn" style="background:#F44B2A"></p:commandButton>
                 </div>  
             </h:form>
         </div>
-    </body>
+    </h:body>
 </html>

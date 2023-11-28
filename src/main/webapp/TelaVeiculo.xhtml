@@ -11,46 +11,46 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="style/TelaTabelaClientes.css"/>
     </h:head>
-    <body>
+    <h:body style="background: -webkit-linear-gradient(left, #054A74, #85cdfa, #054A74);">
         <div class="card">
             <h:form id="form">
                 <p:dataTable id="tbVeiculo" var="veiculo" value="#{veiculoBean.obterLista()}" rowKey="#{veiculo.id}" selection="${veiculoBean.itemSelecionado}" selectionMode="single">
                     <f:facet name="header">
                         <h:outputLabel><h1>TABELA DE VEÍCULOS</h1></h:outputLabel>
                     </f:facet>
-                    <p:column headerText="Seleção" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
-                        <input type="radio" name="radio2" value="${veiculo.id}" class="content"/>                        
+                    <p:column headerText="Seleção" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <input type="radio" name="radio2" value="${veiculo.id}" class="content" style="background: #054A74; color: white;"/>                        
                     </p:column>
-                    <p:column headerText="Id" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
-                        <h:outputText value="#{veiculo.id}" class="content"/>  <!-- CONTEÚDO DE CADA COLUNA -->
+                    <p:column headerText="Id" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{veiculo.id}" class="content" style="background: #054A74; color: white;"/>  <!-- CONTEÚDO DE CADA COLUNA -->
                     </p:column>
-                    <p:column headerText="Fabricante" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
-                        <h:outputText value="#{veiculo.fabricante}" class="content"/>  <!-- CONTEÚDO DE CADA COLUNA -->
+                    <p:column headerText="Fabricante" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{veiculo.fabricante}" class="content" style="background: #054A74; color: white;"/>  <!-- CONTEÚDO DE CADA COLUNA -->
+                    </p:column> 
+                    <p:column headerText="Modelo" class="head" style="background: #054A74; color: white;">
+                        <h:outputText value="#{veiculo.modelo}" class="content" style="background: #054A74; color: white;"/>
                     </p:column>
-                    <p:column headerText="Modelo" width="200px" class="head">
-                        <h:outputText value="#{veiculo.modelo}" class="content"/>
+                    <p:column headerText="Placa" class="head" style="background: #054A74; color: white;">
+                        <h:outputText value="#{veiculo.placa}" class="content" style="background: #054A74; color: white;"/>
                     </p:column>
-                    <p:column headerText="Placa" width="100px" class="head">
-                        <h:outputText value="#{veiculo.placa}" class="content"/>
+                    <p:column headerText="Ano do Modelo" class="head" style="background: #054A74; color: white;">
+                        <h:outputText value="#{veiculo.anoModelo}" class="content" style="background: #054A74; color: white;"/>
                     </p:column>
-                    <p:column headerText="Ano do Modelo" width="100px" class="head">
-                        <h:outputText value="#{veiculo.anoModelo}" class="content"/>
-                    </p:column>
-                    <p:column headerText="Quantidade de Portas" width="200px" class="head">
-                        <h:outputText value="#{veiculo.qtdPortas}" class="content"/>
+                    <p:column headerText="Quantidade de Portas" class="head" style="background: #054A74; color: white;">
+                        <h:outputText value="#{veiculo.qtdPortas}" class="content" style="background: #054A74; color: white;"/>
                     </p:column>                 
-                    <p:column headerText="Acessórios" width="200px" class="head">
-                        <h:outputText value="#{veiculo.acessorios}" class="content"/>
+                    <p:column headerText="Acessórios" class="head" style="background: #054A74; color: white;">
+                        <h:outputText value="#{veiculo.acessorios}" class="content" style="background: #054A74; color: white;"/>
                     </p:column>
 
 
                 </p:dataTable>  
                 <div class="btns">
-                    <p:linkButton outcome="TelaCadastroVeiculo" value="Cadastrar" style="margin-right:20px;" styleClass="btn"></p:linkButton>
-                    <p:commandButton value="Alterar" styleClass="btn"></p:commandButton>
-                    <p:commandButton value="Deletar" styleClass="btn"></p:commandButton>
+                    <p:linkButton outcome="TelaCadastroVeiculo" value="Cadastrar" style="margin-right:20px; background:#F44B2A" styleClass="btn"></p:linkButton>
+                    <p:commandButton value="Alterar" styleClass="btn" style="background:#F44B2A; margin-right: 1em"></p:commandButton>
+                    <p:commandButton value="Deletar" styleClass="btn" style="background:#F44B2A"></p:commandButton>
                 </div>  
             </h:form>
         </div>
-    </body>
+    </h:body>
 </html>

@@ -11,18 +11,27 @@
         <link rel="stylesheet" href="style/TelaCadastro.css"/>
     </h:head>
 
-    <body>
-        <div class="card">
+    <h:body style="background:-webkit-linear-gradient(left, #054A74, #85cdfa, #054A74);">
+        <div class="card" style="background: #054A74">
 
             <h2>Cadastro De Alugueis</h2>
 
-            <h:form>
+            <h:form style="background: #054A74">
 
                 <p:outputLabel for="idVeiculo" value="Id do Veiculo:"/>
                 <p:inputText id="idVeiculo" styleClass="custom-input" value="#{aluguelBean.idVeiculo}" required="true"/>               
 
                 <p:outputLabel for="idCliente" value="Id Do Cliente:"/>
                 <p:inputText id="idCliente" styleClass="custom-input" value="#{aluguelBean.idCliente}" required="true"/>
+
+                <p:outputLabel for="placaVeiculo" value="Placa do Veículo"/>
+                <p:inputText id="placaVeiculo" styleClass="custom-input" value="#{aluguelBean.placaVeiculo}" required="true"/>
+
+                <p:outputLabel for="cpfCliente" value="CPF"/>
+                <p:inputText id="cpfCliente" styleClass="custom-input" value="#{aluguelBean.cpfCliente}" required="true"/>
+                
+                <p:outputLabel for="nomeCliente" value="Nome do Cliente"/>
+                <p:inputText id="nomeCliente" styleClass="custom-input" value="#{aluguelBean.nomeCliente}" required="true"/>
                 
                 <p:outputLabel for="dataAluguel" value="Data do Aluguel:"/>
                 <p:inputText id="dataAluguel" type="date" styleClass="custom-input" value="#{aluguelBean.dataAluguelString}" required="true"/>
@@ -39,8 +48,8 @@
                 <p:outputLabel for="entregue" value="Foi Entregue?"/>
                 <p:inputText id="entregue" styleClass="custom-input" value="#{aluguelBean.entregue}" required="true"/>
 
-                <p:commandButton  value="Salvar" update="@form" styleClass="mt-3" action="#{aluguelBean.inserir()}" />
+                <p:commandButton  value="Salvar" update="@form" styleClass="mt-3" action="#{aluguelBean.inserir()}" style="background:#F44B2A; text-decoration: none"/>
             </h:form>  
         </div>          
-    </body>
+    </h:body>
 </html>

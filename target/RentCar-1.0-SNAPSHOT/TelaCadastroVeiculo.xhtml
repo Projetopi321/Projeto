@@ -11,12 +11,12 @@
         <link rel="stylesheet" href="style/TelaCadastro.css"/>
     </h:head>
     
-    <body>
-       <div class="card">
+    <h:body style="background: -webkit-linear-gradient(left, #054A74, #85cdfa, #054A74)">
+       <div class="card" style="background: #054A74">
            
             <h2>Cadastro De Veículos</h2>
            
-          <h:form>
+          <h:form style="background: #054A74">
                <p:outputLabel for="fabricante" value="Fabricante:"/>
                <p:inputText id="fabricante" styleClass="custom-input" value="#{veiculoBean.fabricante}" required="true"/>               
               
@@ -35,8 +35,8 @@
                <p:outputLabel for="acessorios" value="Acessorios:"/>
                <p:inputText id="acessorios" styleClass="custom-input" value="#{veiculoBean.acessorios}" required="true"/>  
                                                            
-              <p:commandButton  value="Salvar" update="@form" styleClass="mt-3" action="#{veiculoBean.inserir()}" />
+              <p:commandButton  value="Salvar" update="@form" styleClass="mt-3" action="#{veiculoBean.inserir()}" style="background:#F44B2A; text-decoration: none"/>
           </h:form>  
         </div>          
-    </body>
+    </h:body>
 </html>

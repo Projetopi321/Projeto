@@ -11,47 +11,47 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="style/TelaTabelaClientes.css"/>
     </h:head>
-    <body>
-        <div class="card">
-            <h:form id="form">
-                <p:dataTable id="tbCliente" var="cliente" value="#{clienteBean.obterLista()}" rowKey="#{cliente.id}" selection="${clienteBean.itemSelecionado}" selectionMode="single">
+    <h:body  style="background: -webkit-linear-gradient(left, #054A74, #85cdfa, #054A74)">
+        <div class="card" style="background: #054A74">
+            <h:form id="form" style="background: #054A74">
+                <p:dataTable id="tbCliente" var="cliente" value="#{clienteBean.obterLista()}" styleClass="tabela" rowKey="#{cliente.id}" selection="${clienteBean.itemSelecionado}" selectionMode="single">
                     <f:facet name="header">
-                        <h:outputLabel><h1>TABELA DE CLIENTES</h1></h:outputLabel>
-                    </f:facet>
-                    <p:column headerText="Seleção" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
-                        <input type="radio" name="radio2" value="${cliente.id}" class="content"/>                        
+                        <h:outputLabel><h1 class="tabela">TABELA DE CLIENTES</h1></h:outputLabel>
+                    </f:facet >
+                    <p:column headerText="Seleção" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <input type="radio" name="radio2" value="${cliente.id}" class="content" style="background: #054A74; color: white;"/>                        
                     </p:column>
-                    <p:column headerText="Id" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
-                        <h:outputText value="#{cliente.id}" class="content"/>  <!-- CONTEÚDO DE CADA COLUNA -->
+                    <p:column headerText="Id" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{cliente.id}" class="content" style="background: #054A74; color: white;"/>  <!-- CONTEÚDO DE CADA COLUNA -->
                     </p:column>
-                    <p:column headerText="Nome" width="100px" class="head">  <!-- CABEÇALHO DE CADA COLUNA-->
-                        <h:outputText value="#{cliente.nome}" class="content"/>  <!-- CONTEÚDO DE CADA COLUNA -->
+                    <p:column headerText="Nome" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{cliente.nome}" class="content" style="color: white;" />  <!-- CONTEÚDO DE CADA COLUNA -->
                     </p:column>
-                    <p:column headerText="Endereço" width="200px" class="head">
-                        <h:outputText value="#{cliente.endereco}" class="content"/>
+                    <p:column headerText="Endereço" class="head" style="background: #054A74; color: white;">
+                        <h:outputText value="#{cliente.endereco}" class="content" style="background: #054A74; color: white;"/>
                     </p:column>
-                    <p:column headerText="UF" width="100px" class="head">
-                        <h:outputText value="#{cliente.uf}" class="content"/>
+                    <p:column headerText="UF" class="head" style="background: #054A74; color: white;">
+                        <h:outputText value="#{cliente.uf}" class="content" style="background: #054A74; color: white;"/>
                     </p:column>
-                    <p:column headerText="Telefone" width="100px" class="head">
-                        <h:outputText value="#{cliente.telefone}" class="content"/>
+                    <p:column headerText="Telefone" class="head" style="background: #054A74; color: white;">
+                        <h:outputText value="#{cliente.telefone}" class="content" style="background: #054A74; color: white;"/>
                     </p:column>
-                    <p:column headerText="CPF" width="200px" class="head">
-                        <h:outputText value="#{cliente.cpf}" class="content"/>
+                    <p:column headerText="CPF" class="head" style="background: #054A74; color: white;">
+                        <h:outputText value="#{cliente.cpf}" class="content" style="background: #054A74; color: white;"/>
                     </p:column>
-                    <p:column headerText="Email" width="200px" class="head">
-                        <h:outputText value="#{cliente.email}" class="content"/>
+                    <p:column headerText="Email" class="head" style="background: #054A74; color: white;">
+                        <h:outputText value="#{cliente.email}" class="content" style="background: #054A74; color: white;"/>
                     </p:column>
                     
 
 
                 </p:dataTable>  
                 <div class="btns">
-                    <p:linkButton outcome="TelaCadastroUsuario" value="Cadastrar" style="margin-right:20px;" styleClass="btn"></p:linkButton>
-                    <p:commandButton value="Alterar" styleClass="btn"></p:commandButton>
-                    <p:commandButton value="Deletar" styleClass="btn"></p:commandButton>
+                    <p:linkButton outcome="TelaCadastroUsuario" value="Cadastrar" style="margin-right:20px; background:#F44B2A; text-decoration: none" styleClass="btn"></p:linkButton>
+                    <p:commandButton value="Alterar" styleClass="btn" style="background:#F44B2A; text-decoration: none; margin-right: 1em"></p:commandButton>
+                    <p:commandButton value="Deletar" styleClass="btn" style="background:#F44B2A; text-decoration: none"></p:commandButton>
                 </div>  
             </h:form>
         </div>
-    </body>
+    </h:body>
 </html>

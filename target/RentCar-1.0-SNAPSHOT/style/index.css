@@ -21,6 +21,7 @@ body{
 }
 
 .custom-input {
+    background-color: #F44B2A;
     margin: 10px 0px 10px 0px;
     outline: none;
     width: 100%
