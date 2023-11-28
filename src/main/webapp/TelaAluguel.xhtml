@@ -14,13 +14,10 @@
     <h:body style="background: -webkit-linear-gradient(left, #054A74, #85cdfa, #054A74);">
         <div class="card">
             <h:form id="form">
-                <p:dataTable id="tbAluguel" var="aluguel" value="#{aluguelBean.obterLista()}" rowKey="#{aluguel.id}" selection="${aluguelBean.itemSelecionado}" selectionMode="single">
+                <p:dataTable id="tbAluguel" var="aluguel" value="#{aluguelBean.obterLista()}" rowKey="#{aluguel.id}" selectionMode="single">
                     <f:facet name="header">
                         <h:outputLabel><h1>TABELA DE ALUGUÉIS</h1></h:outputLabel>
                     </f:facet>
-                    <p:column headerText="Seleção" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
-                        <input type="radio" name="radio2" value="${aluguel.id}" class="content" style="background: #054A74; color: white;"/>                        
-                    </p:column>
                     <p:column headerText="Cliente" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
                         <h:outputText value="#{aluguel.getCliente().getNome()}" class="content" style="background: #054A74; color: white;"/>  <!-- CONTEÚDO DE CADA COLUNA -->
                     </p:column>

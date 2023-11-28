@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Projeto</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="style/TelaCadastro.css"/>
+    </h:head>
+    
+    <h:body style="background: -webkit-linear-gradient(left, #054A74, #85cdfa, #054A74)">
+       <div class="card" style="background: #054A74">
+           
+            <h2>Alterar Veículo</h2>
+           
+            <h:form style="background: #054A74">
+               <p:outputLabel for="fabricante" value="Fabricante:"/>
+               <p:inputText id="fabricante" styleClass="custom-input" value="#{veiculoBean.fabricante}" required="true"/>               
+              
+               <p:outputLabel for="modelo" value="Modelo:"/>
+               <p:inputText id="modelo" styleClass="custom-input" value="#{veiculoBean.modelo}" required="true"/>  
+               
+               <p:outputLabel for="placa" value="Placa:"/>
+               <p:inputText id="placa" styleClass="custom-input" value="#{veiculoBean.placa}" required="true"/> 
+               
+               <p:outputLabel for="anoModelo"  value="Ano do Modelo"/>
+               <p:inputText id="anoModelo"  styleClass="custom-input" type="number" value="#{veiculoBean.anoModelo}" required="true"/>  
+               
+               <p:outputLabel for="qtdPortas" value="Quantidade de Portas:"/>
+               <p:inputText id="qtdPortas" styleClass="custom-input" value="#{veiculoBean.qtdPortas}" required="true"/>  
+               
+               <p:outputLabel for="acessorios" value="Acessorios:"/>
+               <p:inputText id="acessorios" styleClass="custom-input" value="#{veiculoBean.acessorios}" required="true"/>  
+                                                           
+              <p:commandButton  value="Alterar" update="@form" styleClass="mt-3" action="#{veiculoBean.atualizar()}" style="background:#F44B2A; text-decoration: none"/>
+          </h:form>  
+        </div>          
+    </h:body>
+</html>

@@ -14,16 +14,10 @@
     <h:body style="background: -webkit-linear-gradient(left, #054A74, #85cdfa, #054A74);">
         <div class="card">
             <h:form id="form">
-                <p:dataTable id="tbVeiculo" var="veiculo" value="#{veiculoBean.obterLista()}" rowKey="#{veiculo.id}" selection="${veiculoBean.itemSelecionado}" selectionMode="single">
+                <p:dataTable id="tbVeiculo" var="veiculo" value="#{veiculoBean.obterLista()}" rowKey="#{veiculo.id}"  selectionMode="single">
                     <f:facet name="header">
                         <h:outputLabel><h1>TABELA DE VEÍCULOS</h1></h:outputLabel>
                     </f:facet>
-                    <p:column headerText="Seleção" class="head" style="background: #054A74; color: white;"> <!--//CABEÇALHO DE CADA COLUNA-->
-                        <input type="radio" name="radio2" value="${veiculo.id}" class="content" style="background: #054A74; color: white;"/>                        
-                    </p:column>
-<!--                    <p:column headerText="Id" class="head" style="background: #054A74; color: white;">   CABEÇALHO DE CADA COLUNA
-                        <h:outputText value="#{veiculo.id}" class="content" style="background: #054A74; color: white;"/>   CONTEÚDO DE CADA COLUNA 
-                    </p:column>-->
                     <p:column headerText="Fabricante" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
                         <h:outputText value="#{veiculo.fabricante}" class="content" style="background: #054A74; color: white;"/>  <!-- CONTEÚDO DE CADA COLUNA -->
                     </p:column> 
@@ -42,13 +36,15 @@
                     <p:column headerText="Acessórios" class="head" style="background: #054A74; color: white;">
                         <h:outputText value="#{veiculo.acessorios}" class="content" style="background: #054A74; color: white;"/>
                     </p:column>
-
-
+                    <p:column headerText="Opções" class="head" style="background: #054A74; color: white;">
+                        <p:linkButton outcome="TelaAlterarVeiculo" value="Alterar" style="margin-right:20px; background:#F44B2A" styleClass="mt-3">
+                            <f:param name="id" value="#{veiculo.id}" />
+                        </p:linkButton>
+                        <p:commandButton  value="Deletar" styleClass="mt-3" action="#{veiculo.deletar(veiculo.id)}" style="background:#F44B2A; text-decoration: none"/>                      
+                    </p:column>
                 </p:dataTable>  
                 <div class="btns">
                     <p:linkButton outcome="TelaCadastroVeiculo" value="Cadastrar" style="margin-right:20px; background:#F44B2A" styleClass="btn"></p:linkButton>
-                    <p:commandButton value="Alterar" styleClass="btn" style="background:#F44B2A; margin-right: 1em"></p:commandButton>
-                    <p:commandButton value="Deletar" styleClass="btn" style="background:#F44B2A"></p:commandButton>
                 </div>  
             </h:form>
         </div>

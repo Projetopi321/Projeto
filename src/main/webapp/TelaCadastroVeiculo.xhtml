@@ -29,8 +29,14 @@
                <p:outputLabel for="anoModelo"  value="Ano do Modelo"/>
                <p:inputText id="anoModelo"  styleClass="custom-input" type="number" value="#{veiculoBean.anoModelo}" required="true"/>  
                
-               <p:outputLabel for="qtdPortas" value="Quantidade de Portas:"/>
-               <p:inputText id="qtdPortas" styleClass="custom-input" value="#{veiculoBean.qtdPortas}" required="true"/>  
+               <p:outputLabel for="qtdPortas" value="Quantidade de Portas"/>
+               <p></p>
+               <p:selectOneMenu id="qtdPortas" value="#{veiculoBean.qtdPortas}" style="width:12rem">
+               <f:selectItem itemLabel="4" itemValue="4" noSelectionOption="false"/>    
+               <f:selectItem itemLabel="3" itemValue="3" noSelectionOption="true"/>
+               <f:selectItem itemLabel="2" itemValue="2" noSelectionOption="true"/>
+               </p:selectOneMenu>
+               <p></p>
                
                <p:outputLabel for="acessorios" value="Acessorios:"/>
                <p:inputText id="acessorios" styleClass="custom-input" value="#{veiculoBean.acessorios}" required="true"/>  

@@ -108,10 +108,10 @@ public class VeiculoController {
      public void removeById (int Id) {
         
          String sql = "DELETE FROM veiculo WHERE id = ?";
-         
+        
          Connection connection = null;
          PreparedStatement statement = null;
-         
+                 
          try {
 
              connection = ConnectionFactory.getConnection();
@@ -189,9 +189,41 @@ public class VeiculoController {
             id = resultSet.getInt("id"); 
             
         }    
+        
             
         } catch (Exception ex) {
              throw new RuntimeException("Erro ao trazer veiculos " + ex.getMessage() + ex );            
+        } finally {           
+            ConnectionFactory.closeConnection(connection, statement, resultSet);
+        }   
+        
+        return id;
+    }  
+        
+         public int getIdByPlaca(String placa) {
+              
+        String sql = "SELECT id FROM veiculo WHERE placa = ?";
+        
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        
+        int id = 0;
+        try {
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, placa);
+            resultSet = statement.executeQuery();
+            
+        while(resultSet.next()) {
+            
+            id = resultSet.getInt("id"); 
+            
+        }    
+        
+            
+        } catch (Exception ex) {
+             throw new RuntimeException("Erro ao trazer Id Pela Placa " + ex.getMessage() + ex );            
         } finally {           
             ConnectionFactory.closeConnection(connection, statement, resultSet);
         }   
@@ -278,7 +310,7 @@ public class VeiculoController {
             veiculo.setQtdPortas(resultSet.getInt("qtdPortas"));
             veiculo.setAcessorios(resultSet.getString("acessorios"));       
             
-           veiculoEx = veiculo;
+           veiculoEx = veiculo;           
         }    
             
         } catch (Exception ex) {

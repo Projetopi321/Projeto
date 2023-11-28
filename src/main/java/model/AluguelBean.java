@@ -35,10 +35,7 @@ public class AluguelBean implements Serializable {
     String observacao;
     VeiculoBean veiculo;
     ClienteBean cliente;
-    
-
     ArrayList<AluguelBean> lista = new ArrayList<>();
-    private AluguelBean itemSelecionado;
 
     public AluguelBean() {
         this.veiculo = new VeiculoBean();
@@ -87,17 +84,10 @@ public class AluguelBean implements Serializable {
 
         aluguelController.salvar(alugB);
     }
+    
     public void deletar(int id){
         AluguelController dao = new AluguelController();
         dao.removeById(id);
-    }
-
-    public AluguelBean getItemSelecionado() {
-        return itemSelecionado;
-    }
-
-    public void setItemSelecionado(AluguelBean itemSelecionado) {
-        this.itemSelecionado = itemSelecionado;
     }
 
     public String getNomeCliente() {

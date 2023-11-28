@@ -184,6 +184,8 @@ public class ClienteController {
             ClienteBean cliente = new ClienteBean();
             
             cliente.setId(resultSet.getInt("id"));
+            cliente.setLogin(resultSet.getString("login"));
+            cliente.setSenha(resultSet.getString("senha"));
             cliente.setNome(resultSet.getString("nome"));
             cliente.setEndereco(resultSet.getString("endereco"));
             cliente.setUf(resultSet.getString("uf"));
@@ -203,7 +205,7 @@ public class ClienteController {
         return clienteEx;          
      }
      
-     
+
      public List<ClienteBean> getAll() {
               
         String sql = "SELECT * FROM cliente";
@@ -255,6 +257,36 @@ public class ClienteController {
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(sql);
             statement.setString(1, nome);
+            resultSet = statement.executeQuery();
+            
+        while(resultSet.next()) {
+            
+            id = resultSet.getInt("id"); 
+            
+        }    
+            
+        } catch (Exception ex) {
+             throw new RuntimeException("Erro ao trazer clientes " + ex.getMessage() + ex );            
+        } finally {           
+            ConnectionFactory.closeConnection(connection, statement, resultSet);
+        }   
+        
+        return id;
+    }  
+      
+        public int getIdByCpf(String cpf) {
+              
+        String sql = "SELECT id FROM cliente WHERE cpf = ?";
+        
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        
+        int id = 0;
+        try {
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, cpf);
             resultSet = statement.executeQuery();
             
         while(resultSet.next()) {
