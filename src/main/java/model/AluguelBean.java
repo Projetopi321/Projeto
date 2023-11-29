@@ -6,15 +6,11 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -34,6 +30,7 @@ public class AluguelBean implements Serializable {
     String placaVeiculo;
     String cpfCliente;
     String nomeCliente;
+    float valorFaturamento;
     
     Date dataAluguel;
     Date dataEntrega;
@@ -167,6 +164,32 @@ public class AluguelBean implements Serializable {
         
     public void deletar(int id){
         aluguelController.removeById(id);
+    }
+    
+    public float consultarFaturamento(String dataA, String dataE){
+       
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date dataFormatada = null;
+        Date dataFormatada2 = null;
+
+        try {
+            dataFormatada = sdf.parse(dataA);
+            dataFormatada2 = sdf.parse(dataE);
+        } catch (ParseException ex) {
+            System.out.println("ERRO AO CONVERTER A DATA");
+        }
+        
+        valorFaturamento = aluguelController.ExibirFaturamento(dataFormatada, dataFormatada2);
+        
+        return valorFaturamento;
+    }
+
+    public float getValorFaturamento() {
+        return valorFaturamento;
+    }
+
+    public void setValorFaturamento(float valorFaturamento) {
+        this.valorFaturamento = valorFaturamento;
     }
     
     public AluguelBean buscarAluguel(int idAluguel) {    

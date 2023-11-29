@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>TODO supply a title</title>
+        <title>Tela Cliente</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="style/TelaTabelaClientes.css"/>
     </h:head>
@@ -23,6 +23,9 @@
                     <f:facet name="header">
                         <h:outputLabel><h1 class="tabela">TABELA DE CLIENTES</h1></h:outputLabel>
                     </f:facet >
+                    <p:column headerText="Id" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{cliente.id}" class="content" style="color: white;" />  <!-- CONTEÚDO DE CADA COLUNA -->
+                    </p:column>
                     <p:column headerText="Nome" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
                         <h:outputText value="#{cliente.nome}" class="content" style="color: white;" />  <!-- CONTEÚDO DE CADA COLUNA -->
                     </p:column>

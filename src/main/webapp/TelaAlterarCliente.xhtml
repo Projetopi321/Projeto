@@ -35,13 +35,47 @@
                 <p:inputText styleClass="custom-input" id="endereco"   value="#{clienteBean.endereco}" required="true"/>  
 
                 <p:outputLabel styleClass="custom-input" for="uf" value="UF:"/>
-                <p:inputText styleClass="custom-input" id="uf"  value="#{clienteBean.uf}" required="true"/>  
+                <p></p>
+                <p:selectOneMenu id="uf" value="#{clienteBean.uf}" style="width:12rem" required="true">
+                    <f:selectItem itemLabel="AC" itemValue="AC" noSelectionOption="false"/>
+                    <f:selectItem itemLabel="AL" itemValue="AL"/>
+                    <f:selectItem itemLabel="AP" itemValue="AP"/>
+                    <f:selectItem itemLabel="AM" itemValue="AM"/>
+                    <f:selectItem itemLabel="BA" itemValue="BA"/>
+                    <f:selectItem itemLabel="CE" itemValue="CE"/>
+                    <f:selectItem itemLabel="DF" itemValue="DF"/>
+                    <f:selectItem itemLabel="ES" itemValue="ES"/>
+                    <f:selectItem itemLabel="GO" itemValue="GO"/>
+                    <f:selectItem itemLabel="MA" itemValue="MA"/>
+                    <f:selectItem itemLabel="MT" itemValue="MT"/>
+                    <f:selectItem itemLabel="MS" itemValue="MS"/>
+                    <f:selectItem itemLabel="MG" itemValue="MG"/>
+                    <f:selectItem itemLabel="PA" itemValue="PA"/>
+                    <f:selectItem itemLabel="PB" itemValue="PB"/>
+                    <f:selectItem itemLabel="PR" itemValue="PR"/>
+                    <f:selectItem itemLabel="PE" itemValue="PE"/>
+                    <f:selectItem itemLabel="PI" itemValue="PI"/>
+                    <f:selectItem itemLabel="RJ" itemValue="RJ"/>
+                    <f:selectItem itemLabel="RN" itemValue="RN"/>
+                    <f:selectItem itemLabel="RS" itemValue="RS"/>
+                    <f:selectItem itemLabel="RO" itemValue="RO"/>
+                    <f:selectItem itemLabel="RR" itemValue="RR"/>
+                    <f:selectItem itemLabel="SC" itemValue="SC"/>
+                    <f:selectItem itemLabel="SP" itemValue="SP"/>
+                    <f:selectItem itemLabel="SE" itemValue="SE"/>
+                    <f:selectItem itemLabel="TO" itemValue="TO"/>
+                </p:selectOneMenu>
+                <p></p>
 
                 <p:outputLabel styleClass="custom-input" for="telefone" value="Telefone:"/>
-                <p:inputText  id="telefone" styleClass="custom-input" value="#{clienteBean.telefone}" required="true"/>  
+                <p></p>
+                <p:inputMask id="telefone" mask="(99)99999-9999"  value="#{clienteBean.telefone}" required="true" />
+                <p></p> 
 
                 <p:outputLabel styleClass="custom-input" for="cpf" value="CPF:"/>
-                <p:inputText styleClass="custom-input" id="cpf"  value="#{clienteBean.cpf}" required="true"/>  
+                <p></p>
+                <p:inputMask id="cpf" mask="999.999.999-99"  value="#{clienteBean.cpf}" required="true" />
+                <p></p>  
 
                 <p:outputLabel styleClass="custom-input" for="email" value="Email:"/>
                 <p:inputText styleClass="custom-input" id="email" value="#{clienteBean.email}" required="true"/>  

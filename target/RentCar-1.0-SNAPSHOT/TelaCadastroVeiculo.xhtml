@@ -6,7 +6,7 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core"
     xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Projeto</title>
+        <title>Tela Cadastro de Veiculo</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="style/TelaCadastro.css"/>
     </h:head>
@@ -29,10 +29,14 @@
                <p:inputText id="modelo" styleClass="custom-input" value="#{veiculoBean.modelo}" required="true"/>  
                
                <p:outputLabel for="placa" value="Placa:"/>
-               <p:inputText id="placa" styleClass="custom-input" value="#{veiculoBean.placa}" required="true"/> 
-               
+               <p></p>
+               <p:inputMask id="placa" mask="aaa-****" type="text"  value="#{veiculoBean.placa}" required="true" />
+               <p></p> 
+
                <p:outputLabel for="anoModelo"  value="Ano do Modelo"/>
-               <p:inputText id="anoModelo"  styleClass="custom-input" type="number" value="#{veiculoBean.anoModelo}" required="true"/>  
+               <p></p>
+               <p:inputMask id="anoModelo" mask="9999" value="#{veiculoBean.anoModelo}" required="true" />
+               <p></p>   
                
                <p:outputLabel for="qtdPortas" value="Quantidade de Portas"/>
                <p></p>

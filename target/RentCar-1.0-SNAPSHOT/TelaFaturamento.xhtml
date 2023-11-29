@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Tela Cadastro Aluguel</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="style/TelaCadastro.css"/>
+    </h:head>
+
+    <h:body style="background:-webkit-linear-gradient(left, #054A74, #85cdfa, #054A74);">
+        <div id="voltar">
+            <p:commandLink id="backLink" onclick="history.go(-0)" title="Voltar">            
+                <i class="pi pi-arrow-left" style="margin-right: 5px; color: white; font-size: 20px;"></i>            
+            </p:commandLink>
+        </div>
+        <div class="card" style="background: #054A74">
+
+            <h2>Consultar Faturamento</h2>
+
+            <h:form style="background: #054A74">
+                
+                <p:outputLabel for="dataAluguel" value="Data Inicial"/>
+                <p:inputText id="dataAluguel" type="date" styleClass="custom-input" value="#{aluguelBean.dataAluguelString}" required="true"/>
+
+                <p:outputLabel for="dataEntrega" value="Data Final"/>
+                <p:inputText id="dataEntrega" type="date" styleClass="custom-input" value="#{aluguelBean.dataEntregaString}" required="true"/>
+                
+                <p:outputLabel value="Faturamento = " style="font-size: 50px"/>
+                <h:outputText value="#{aluguelBean.valorFaturamento}" style="font-size: 50px"/>
+
+                <p:commandButton  value="Consultar" update="@form" styleClass="mt-3" action="#{aluguelBean.consultarFaturamento(aluguelBean.dataAluguelString,aluguelBean.dataEntregaString)}" style="background:#F44B2A; text-decoration: none"/>
+                
+            </h:form>  
+        </div>          
+    </h:body>
+</html>

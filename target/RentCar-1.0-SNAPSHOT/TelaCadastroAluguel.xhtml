@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Projeto</title>
+        <title>Tela Cadastro Aluguel</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="style/TelaCadastro.css"/>
     </h:head>
@@ -45,7 +45,7 @@
                 <p:inputText id="dataEntrega" type="date" styleClass="custom-input" value="#{aluguelBean.dataEntregaString}" required="true"/>
 
                 <p:outputLabel for="observacao" value="Observação:"/>
-                <p:inputText id="observacao" styleClass="custom-input" value="#{aluguelBean.observacao}" required="true"/>
+                <p:inputText id="observacao" styleClass="custom-input" value="#{aluguelBean.observacao}"/>
 
                 <p:outputLabel for="valorPago" value="Valor Pago:"/>
                 <p:inputText id="valorPago" styleClass="custom-input" value="#{aluguelBean.valorPago}" required="true"/>
