@@ -9,7 +9,11 @@ body{
 .card h2 {
     text-align: center         
 }
-
+#voltar{
+    position: absolute;
+    right: 95%;
+    bottom:90%
+}
 .card {
 
     color: white;

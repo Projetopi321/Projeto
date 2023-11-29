@@ -12,6 +12,11 @@
         <link rel="stylesheet" href="style/TelaTabelaClientes.css"/>
     </h:head>
     <h:body style="background: -webkit-linear-gradient(left, #054A74, #85cdfa, #054A74);">
+        <div id="voltar">
+            <p:commandLink id="backLink" onclick="history.go(-1)" title="Voltar">            
+                <i class="pi pi-arrow-left" style="margin-right: 5px; color: white; font-size: 20px;"></i>            
+            </p:commandLink>
+        </div>
         <div class="card">
             <h:form id="form">
                 <p:dataTable id="tbAluguel" var="aluguel" value="#{aluguelBean.obterLista()}" rowKey="#{aluguel.id}" selectionMode="single">
@@ -39,16 +44,26 @@
                     <p:column headerText="Observação" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
                         <h:outputText value="#{aluguel.observacao}" class="content" style="background: #054A74; color: white;"/>  <!-- CONTEÚDO DE CADA COLUNA -->
                     </p:column>
-                    <p:column headerText="Opções" class="head" style="background: #054A74; color: white;">
-                        <p:linkButton outcome="TelaAlterarAluguel" value="Alterar" style="margin-right:20px; background:#F44B2A" styleClass="mt-3">
-                            <f:param name="id" value="#{aluguel.id}" />
-                        </p:linkButton>
-                        <p:commandButton  value="Deletar" styleClass="mt-3" action="#{aluguel.deletar(aluguel.id)}" style="background:#F44B2A; text-decoration: none"/>                      
+                    <p:column headerText="Opções" class="head" style="background: #054A74; color: white;">                        
+                        <div id="opcoes">
+                            <div>
+                                <p:commandLink action="#{aluguel.deletar(aluguel.id)}" update="@form">                            
+                                    <i class="pi pi-trash" style="margin-right: 5px; color: white"></i>                             
+                                </p:commandLink> 
+                            </div>
+                            <div>
+                                <p:commandLink action="TelaAlterarAluguel" update="@form">                            
+                                    <i class="pi pi-pencil" style="margin-right: 5px; color: white;"></i>                            
+                                    <f:param name="id" value="#{aluguel.id}"/>
+                                </p:commandLink>
+                            </div>
+                        </div>
                     </p:column>
-
                 </p:dataTable>  
                 <div class="btns">
-                    <p:linkButton outcome="TelaCadastroAluguel" value="Cadastrar" style="margin-right:20px; background:#F44B2A" styleClass="btn" ></p:linkButton>
+                    <p:commandLink action="TelaCadastroAluguel">                        
+                        <i class="pi pi-plus" style="margin:1em 0.9em; font-size:1.5em; color: white;"></i>                        
+                    </p:commandLink>
                 </div>  
             </h:form>
         </div>

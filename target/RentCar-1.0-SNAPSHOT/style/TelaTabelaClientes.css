@@ -7,7 +7,16 @@ body{
     justify-content: center;
 
 }
-
+#opcoes{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+#voltar{
+    position: absolute;
+    right: 95%;
+    bottom:90%
+}
 .card h2 {
     text-align: center 
 }

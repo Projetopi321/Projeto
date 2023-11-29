@@ -25,7 +25,7 @@
                 <p:inputText id="login" styleClass="custom-input" value="#{clienteBean.login}" required="true"/>   
 
                 <p:outputLabel for="senha" value="Senha:"/>
-                <p:inputText id="senha" styleClass="custom-input" value="#{clienteBean.senha}" required="true"/>  
+                <p:inputText type="password" id="senha" styleClass="custom-input" value="#{clienteBean.senha}" required="true"/>  
 
                 <c:choose>
                     <c:when test = "${clienteBean.resultado}">  <!-- FAZENDO A REGRA DE NEGÓCIO DE LOGIN - AUTORIZANDO AO ENCONTRAR NO BANCO DE DADOS-->
