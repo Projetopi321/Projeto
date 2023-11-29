@@ -3,12 +3,11 @@ package model;
 import controller.ClienteController;
 import java.util.ArrayList;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import org.primefaces.event.SelectEvent;
+
 
 /**
  *
@@ -87,7 +86,6 @@ public class ClienteBean {
     }
         
     public void deletar(int id) {
- 
         clienteDao.removeById(id);
     }
 

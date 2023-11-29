@@ -6,9 +6,13 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.SelectEvent;
 
@@ -26,9 +30,11 @@ public class AluguelBean implements Serializable {
     float valorPago;
     String dataAluguelString;
     String dataEntregaString;
+    
     String placaVeiculo;
     String cpfCliente;
     String nomeCliente;
+    
     Date dataAluguel;
     Date dataEntrega;
     String entregue;
@@ -36,15 +42,47 @@ public class AluguelBean implements Serializable {
     VeiculoBean veiculo;
     ClienteBean cliente;
     ArrayList<AluguelBean> lista = new ArrayList<>();
-
+    AluguelBean alugB;
+    AluguelController aluguelController = new AluguelController();
+    
     public AluguelBean() {
         this.veiculo = new VeiculoBean();
         this.cliente = new ClienteBean();
     }
+    
+    @PostConstruct
+    public void init() {
+        // Defina um valor inicial para placa
+        
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        String idParam = externalContext.getRequestParameterMap().get("id");
+        
+      if ( idParam != null ) {
+        
+       int id = Integer.parseInt(idParam);
+       
+       dataAluguel = buscarAluguel(id).getDataAluguel();
+       dataEntrega = buscarAluguel(id).getDataEntrega();
+      
+       SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 
-    AluguelBean alugB;
-    AluguelController aluguelController = new AluguelController();
-
+       String dataFormatada = formato.format(dataAluguel);
+       String dataFormatada2 = formato.format(dataEntrega);
+       
+       dataAluguelString = dataFormatada;
+       dataEntregaString = dataFormatada2;
+       
+       idCliente = buscarAluguel(id).getIdCliente();
+       idVeiculo = buscarAluguel(id).getIdVeiculo();
+       entregue = buscarAluguel(id).getEntregue();
+       valorPago = buscarAluguel(id).getValorPago();
+       observacao = buscarAluguel(id).getObservacao();
+       nomeCliente = buscarAluguel(id).getNomeCliente();
+       cpfCliente = buscarAluguel(id).getCpfCliente();
+       placaVeiculo = buscarAluguel(id).getPlacaVeiculo();  
+     }
+    }
+    
     public void inserir() {
         alugB = new AluguelBean();
 
@@ -61,7 +99,7 @@ public class AluguelBean implements Serializable {
         } catch (ParseException ex) {
             System.out.println("ERRO AO CONVERTER A DATA");
         }
-
+        
         alugB.setId(id);
         alugB.setVeiculo(veiculo);
         alugB.setCliente(cliente);
@@ -85,9 +123,54 @@ public class AluguelBean implements Serializable {
         aluguelController.salvar(alugB);
     }
     
+       public void atualizar() {
+        alugB = new AluguelBean();
+
+        String dataString = dataAluguelString;
+        String dataString2 = dataEntregaString;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date dataFormatada = null;
+        Date dataFormatada2 = null;
+
+        try {
+            dataFormatada = sdf.parse(dataString);
+            dataFormatada2 = sdf.parse(dataString2);
+        } catch (ParseException ex) {
+            System.out.println("ERRO AO CONVERTER A DATA");
+        }
+
+        id = aluguelController.getByPlaca(placaVeiculo).getId();
+        
+        alugB.setId(id);
+        alugB.setVeiculo(veiculo);
+        alugB.setCliente(cliente);
+        alugB.setDataAluguel(dataFormatada);
+        alugB.setDataEntrega(dataFormatada2);
+        alugB.setEntregue(entregue);
+        alugB.setObservacao(observacao);
+        alugB.setValorPago(valorPago);
+        alugB.setCpfCliente(cpfCliente);
+        alugB.setPlacaVeiculo(placaVeiculo);
+        alugB.setNomeCliente(nomeCliente);
+        alugB.setIdCliente(cliente.getId());
+        alugB.setIdVeiculo(veiculo.getId());
+
+        alugB.getVeiculo().setId(getIdVeiculo());
+        alugB.getCliente().setId(getIdCliente());
+
+        alugB.setDataEntregaString(dataEntregaString);
+        alugB.setDataAluguelString(dataAluguelString);
+        
+        aluguelController.update(alugB);
+    }
+        
     public void deletar(int id){
-        AluguelController dao = new AluguelController();
-        dao.removeById(id);
+        aluguelController.removeById(id);
+    }
+    
+    public AluguelBean buscarAluguel(int idAluguel) {    
+        return aluguelController.getById(idAluguel);  
     }
 
     public String getNomeCliente() {
@@ -98,14 +181,7 @@ public class AluguelBean implements Serializable {
         this.nomeCliente = nomeCliente;
     }
     
-    public void onRowSelect(SelectEvent<ClienteBean> event) {
-        FacesMessage msg = new FacesMessage("Item Selecionado", event.getObject().getLogin());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-
     public ArrayList<AluguelBean> obterLista() throws ParseException {
-        
-        
         lista = aluguelController.obterAlugueis();        
         return lista;
     }

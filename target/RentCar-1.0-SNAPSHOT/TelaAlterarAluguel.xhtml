@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Projeto</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="style/TelaCadastro.css"/>
+    </h:head>
+
+    <h:body style="background:-webkit-linear-gradient(left, #054A74, #85cdfa, #054A74);">
+        <div class="card" style="background: #054A74">
+
+            <h2>Alterar Aluguel</h2>
+
+            <h:form style="background: #054A74">
+
+                <p:outputLabel for="idVeiculo" value="Id do Veiculo:"/>
+                <p:inputText id="idVeiculo" styleClass="custom-input" value="#{aluguelBean.idVeiculo}" required="true"/>               
+
+                <p:outputLabel for="idCliente" value="Id Do Cliente:"/>
+                <p:inputText id="idCliente" styleClass="custom-input" value="#{aluguelBean.idCliente}" required="true"/>
+
+                <p:outputLabel for="placaVeiculo" value="Placa do Veículo"/>
+                <p:inputText id="placaVeiculo" styleClass="custom-input" value="#{aluguelBean.placaVeiculo}" required="true"/>
+
+                <p:outputLabel for="cpfCliente" value="CPF"/>
+                <p:inputText id="cpfCliente" styleClass="custom-input" value="#{aluguelBean.cpfCliente}" required="true"/>
+                
+                <p:outputLabel for="nomeCliente" value="Nome do Cliente"/>
+                <p:inputText id="nomeCliente" styleClass="custom-input" value="#{aluguelBean.nomeCliente}" required="true"/>
+                
+                <p:outputLabel for="dataAluguel" value="Data do Aluguel:"/>
+                <p:inputText id="dataAluguel" type="date" styleClass="custom-input" value="#{aluguelBean.dataAluguelString}" required="true"/>
+
+                <p:outputLabel for="dataEntrega" value="Data de Entregue:"/>
+                <p:inputText id="dataEntrega" type="date" styleClass="custom-input" value="#{aluguelBean.dataEntregaString}" required="true"/>
+
+                <p:outputLabel for="observacao" value="Observação:"/>
+                <p:inputText id="observacao" styleClass="custom-input" value="#{aluguelBean.observacao}" required="true"/>
+
+                <p:outputLabel for="valorPago" value="Valor Pago:"/>
+                <p:inputText id="valorPago" styleClass="custom-input" value="#{aluguelBean.valorPago}" required="true"/>
+
+                <p:outputLabel for="entregue" value="Foi Entregue?"/>
+                <p:inputText id="entregue" styleClass="custom-input" value="#{aluguelBean.entregue}" required="true"/>
+                
+                <p:commandButton  value="Alterar" update="@form" styleClass="mt-3" action="#{aluguelBean.atualizar()}" style="background:#F44B2A; text-decoration: none"/>
+            </h:form>  
+        </div>          
+    </h:body>
+</html>

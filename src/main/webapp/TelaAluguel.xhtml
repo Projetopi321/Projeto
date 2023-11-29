@@ -30,7 +30,6 @@
                     <p:column headerText="Data Entrega" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
                         <h:outputText value="#{aluguel.dataEntregaString}" class="content" style="background: #054A74; color: white;"/>  <!-- CONTEÚDO DE CADA COLUNA -->
                     </p:column>
-                    
                     <p:column headerText="Entregue" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
                         <h:outputText value="#{aluguel.entregue}" class="content" style="background: #054A74; color: white;"/>  <!-- CONTEÚDO DE CADA COLUNA -->
                     </p:column>
@@ -40,12 +39,16 @@
                     <p:column headerText="Observação" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
                         <h:outputText value="#{aluguel.observacao}" class="content" style="background: #054A74; color: white;"/>  <!-- CONTEÚDO DE CADA COLUNA -->
                     </p:column>
+                    <p:column headerText="Opções" class="head" style="background: #054A74; color: white;">
+                        <p:linkButton outcome="TelaAlterarAluguel" value="Alterar" style="margin-right:20px; background:#F44B2A" styleClass="mt-3">
+                            <f:param name="id" value="#{aluguel.id}" />
+                        </p:linkButton>
+                        <p:commandButton  value="Deletar" styleClass="mt-3" action="#{aluguel.deletar(aluguel.id)}" style="background:#F44B2A; text-decoration: none"/>                      
+                    </p:column>
 
                 </p:dataTable>  
                 <div class="btns">
                     <p:linkButton outcome="TelaCadastroAluguel" value="Cadastrar" style="margin-right:20px; background:#F44B2A" styleClass="btn" ></p:linkButton>
-                    <p:commandButton value="Alterar" styleClass="btn" style="background:#F44B2A; margin-right: 1em" update="@form"></p:commandButton>
-                    <p:commandButton value="Deletar" styleClass="btn" style="background:#F44B2A" action="#{aluguelBean.d}" update="@form"></p:commandButton>
                 </div>  
             </h:form>
         </div>

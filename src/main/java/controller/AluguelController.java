@@ -94,8 +94,8 @@ public class AluguelController {
     }
 
     public void update(AluguelBean aluguel) {
-
-        String sql = "UPDATE aluguel SET idVeiculo = ?, dataAluguel = ?, dataEntrega = ?, idCliente = ?, entregue = ?, observacao = ? , valorPago = ? WHERE id = ?";
+ 
+        String sql = "UPDATE aluguel SET idVeiculo = ?, dataAluguel = ?, dataEntrega = ?, idCliente = ?, entregue = ?, observacao = ? , valorPago = ?, placaVeiculo = ?, cpfCliente = ?, nomeCliente = ? WHERE idAluguel = ?";
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -129,7 +129,10 @@ public class AluguelController {
             statement.setString(5, aluguel.getEntregue());
             statement.setString(6, aluguel.getObservacao());
             statement.setFloat(7, aluguel.getValorPago());
-            statement.setInt(8, aluguel.getId());
+            statement.setString(8, aluguel.getPlacaVeiculo());
+            statement.setString(9, aluguel.getCpfCliente());
+            statement.setString(10, aluguel.getNomeCliente());
+            statement.setInt(11, aluguel.getId());
 
             statement.execute();
 
@@ -159,7 +162,7 @@ public class AluguelController {
                 algBean.getCliente().setNome(clienteController.getById(rs.getInt("idCliente")).getNome());
                 algBean.setId(rs.getInt("idAluguel"));
                 String dataAluguelA = sdf.format(rs.getDate("dataAluguel"));
-                String dataEntregaA = sdf.format(rs.getDate("dataAluguel"));
+                String dataEntregaA = sdf.format(rs.getDate("dataEntrega"));
                 algBean.setDataAluguelString(dataAluguelA);
                 algBean.setDataEntregaString(dataEntregaA);
                 algBean.getVeiculo().setPlaca(rs.getString("placaVeiculo"));
@@ -181,7 +184,7 @@ public class AluguelController {
 
     public void removeById(int Id) {
 
-        String sql = "DELETE FROM aluguel WHERE id = ?";
+        String sql = "DELETE FROM aluguel WHERE idAluguel = ?";
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -332,6 +335,98 @@ public class AluguelController {
         }
         return alugueis;
     }
+    
+         public AluguelBean getById(int Id) {
+         
+        String sql = "SELECT * FROM aluguel where idAluguel = ?";
+        
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        
+        AluguelBean aluguelEx = null;
+        
+        try {
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, Id);
+            resultSet = statement.executeQuery();
+            
+        while(resultSet.next()) { 
+            
+            AluguelBean aluguel = new AluguelBean();
+
+                aluguel.setId(resultSet.getInt("idAluguel"));
+                
+                aluguel.setPlacaVeiculo(resultSet.getString("placaVeiculo"));
+                aluguel.setCpfCliente(resultSet.getString("cpfCliente"));
+                aluguel.setNomeCliente(resultSet.getString("nomeCliente"));
+                
+                aluguel.setDataAluguel((Date) resultSet.getDate("dataAluguel"));
+                aluguel.setDataEntrega((Date) resultSet.getDate("dataEntrega"));
+                aluguel.setIdCliente(resultSet.getInt("idCliente"));
+                aluguel.setIdVeiculo(resultSet.getInt("idVeiculo"));
+                aluguel.setEntregue(resultSet.getString("entregue"));
+                aluguel.setObservacao(resultSet.getString("observacao"));
+                aluguel.setValorPago(resultSet.getFloat("valorPago"));
+
+                aluguelEx = aluguel;     
+        }    
+            
+        } catch (Exception ex) {
+             throw new RuntimeException("Erro ao trazer aluguel " + ex.getMessage() + ex );            
+        } finally {           
+            ConnectionFactory.closeConnection(connection, statement, resultSet);
+        } 
+
+        return aluguelEx;          
+     }
+         
+        public AluguelBean getByPlaca(String placa) {
+         
+        String sql = "SELECT * FROM aluguel where placaVeiculo = ?";
+        
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        
+        AluguelBean aluguelEx = null;
+        
+        try {
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, placa);
+            resultSet = statement.executeQuery();
+            
+        while(resultSet.next()) { 
+            
+            AluguelBean aluguel = new AluguelBean();
+
+                aluguel.setId(resultSet.getInt("idAluguel"));
+                
+                aluguel.setPlacaVeiculo(resultSet.getString("placaVeiculo"));
+                aluguel.setCpfCliente(resultSet.getString("cpfCliente"));
+                aluguel.setNomeCliente(resultSet.getString("nomeCliente"));
+                
+                aluguel.setDataAluguel((Date) resultSet.getDate("dataAluguel"));
+                aluguel.setDataEntrega((Date) resultSet.getDate("dataEntrega"));
+                aluguel.setIdCliente(resultSet.getInt("idCliente"));
+                aluguel.setIdVeiculo(resultSet.getInt("idVeiculo"));
+                aluguel.setEntregue(resultSet.getString("entregue"));
+                aluguel.setObservacao(resultSet.getString("observacao"));
+                aluguel.setValorPago(resultSet.getFloat("valorPago"));
+
+                aluguelEx = aluguel;     
+        }    
+            
+        } catch (Exception ex) {
+             throw new RuntimeException("Erro ao trazer aluguel " + ex.getMessage() + ex );            
+        } finally {           
+            ConnectionFactory.closeConnection(connection, statement, resultSet);
+        } 
+
+        return aluguelEx;          
+     }
 
     public float ExibirFaturamento(java.util.Date dataInicio, java.util.Date dataFim) {
 
