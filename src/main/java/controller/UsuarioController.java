@@ -28,7 +28,7 @@ public class UsuarioController {
     public ArrayList<UsuarioBean> obterUsuarios() {
         connection = new ConnectionFactory().getConnection(); // CRIANDO A CONEXÃO
 
-        String url = "SELECT * FROM usuarios ORDER BY login"; // STRING DA CONSULTA SQL
+        String url = "SELECT * FROM usuario ORDER BY login"; // STRING DA CONSULTA SQL
 
         try {
             ps = connection.prepareStatement(url); 
@@ -48,13 +48,50 @@ public class UsuarioController {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Erro ao buscar Clientes");
+            throw new RuntimeException("Erro ao buscar Usuarios");
         } finally {
             ConnectionFactory.closeConnection(connection, ps, rs);
         }
         return lista;  //RETORNANDO A LISTA PARA A CLASSE BEANS.
     }
-    
+    public UsuarioBean getById(int Id) {
+         
+        String sql = "SELECT * FROM usuario where id = ?";
+        
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        
+        UsuarioBean usuarioEx = null;
+        
+        try {
+            connection = ConnectionFactory.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, Id);
+            resultSet = statement.executeQuery();
+            
+        while(resultSet.next()) { 
+            
+            UsuarioBean cliente = new UsuarioBean();
+            
+            cliente.setId(resultSet.getInt("id"));
+            cliente.setCargo(resultSet.getString("cargo"));            
+            cliente.setNome(resultSet.getString("nome"));            
+            cliente.setLogin(resultSet.getString("login"));            
+            cliente.setSenha(resultSet.getString("senha"));            
+            cliente.setEmail(resultSet.getString("email"));        
+            
+            usuarioEx = cliente;
+        }    
+            
+        } catch (Exception ex) {
+             throw new RuntimeException("Erro ao trazer usuario  " + ex.getMessage() + ex );            
+        } finally {           
+            ConnectionFactory.closeConnection(connection, statement, resultSet);
+        } 
+
+        return usuarioEx;          
+     }
      public int getIdByLogin(String login) {
               
         String sql = "SELECT id FROM usuario WHERE login = ?";
@@ -96,7 +133,7 @@ public boolean verificaLogin(UsuarioBean user) {
 
             connection = new ConnectionFactory().getConnection();
 
-            String sql = "SELECT login FROM cliente WHERE login = ? And senha = ?";
+            String sql = "SELECT login FROM usuario WHERE login = ? And senha = ?";
 
             statement = connection.prepareStatement(sql);
             statement.setString(1, user.getLogin());

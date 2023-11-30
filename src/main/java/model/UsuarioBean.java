@@ -2,8 +2,11 @@ package model;
 
 import controller.UsuarioController;
 import java.util.ArrayList;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -22,14 +25,37 @@ public class UsuarioBean {
     String email;
     boolean resultado;
 
+    @PostConstruct
+    public void init() {
+        // Defina um valor inicial para placa
+        
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        String idParam = externalContext.getRequestParameterMap().get("id");
+        
+      if ( idParam != null ) {
+        
+       int id = Integer.parseInt(idParam);
+       
+       nome = buscarUsuario(id).getNome();
+       cargo = buscarUsuario(id).getCargo();
+       login = buscarUsuario(id).getLogin();
+       senha = buscarUsuario(id).getSenha();       
+       email = buscarUsuario(id).getEmail();
+     }
+    }
+       public UsuarioBean buscarUsuario(int idUsuario) {    
+        return userDao.getById(idUsuario);
+    }
     public boolean isResultado() {
         return resultado;
     }
-
+    
     public void setResultado(boolean resultado) {
         this.resultado = resultado;
     }
-    
+    public void deletar(int id) {
+        userDao.removeById(id);
+    }
     ArrayList<UsuarioBean> lista = new ArrayList<>();
     UsuarioBean userB;
     UsuarioController userDao = new UsuarioController();

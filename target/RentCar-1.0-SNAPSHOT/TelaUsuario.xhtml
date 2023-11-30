@@ -21,7 +21,7 @@
             <h:form id="form" style="background: #054A74">
                 <p:dataTable id="tbUsuario" var="usuario" value="#{usuarioBean.obterLista()}" styleClass="tabela" rowKey="#{usuario.id}" selectionMode="single">
                     <f:facet name="header">
-                        <h:outputLabel><h1 class="tabela">TABELA DE CLIENTES</h1></h:outputLabel>
+                        <h:outputLabel><h1 class="tabela">TABELA DE USUARIOS</h1></h:outputLabel>
                     </f:facet >
                     <p:column headerText="Id" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
                         <h:outputText value="#{usuario.id}" class="content" style="color: white;" />  <!-- CONTEÚDO DE CADA COLUNA -->

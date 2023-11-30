@@ -19,25 +19,21 @@
         </div>
         <div class="card" style="background: #054A74">
 
-            <h2>Alterar de Usuario</h2>
+            <h2>Formulário de Cadastro</h2>
 
             <h:form styleClass="formUsuario" style="background: #054A74">
-                <p:outputLabel for="nome" value="Nome>" styleClass="custom-input"/>
-                <p:inputText styleClass="custom-input" id="login"  value="#{usuario.nome}" required="true"/>   
 
+                <p:outputLabel styleClass="custom-input" for="nome" value="Nome:"/>
+                <p:inputText styleClass="custom-input" id="nome"  value="#{usuarioBean.nome}" required="true"/> 
                 <p:outputLabel styleClass="custom-input" for="cargo" value="Cargo:"/>
-                <p:inputText styleClass="custom-input" id="cargo"  value="#{usuario.cargo}" required="true"/>  
-
+                <p:inputText styleClass="custom-input" id="cargo"  value="#{usuarioBean.cargo}" required="true"/>  
                 <p:outputLabel styleClass="custom-input" for="login" value="Login:"/>
-                <p:inputText styleClass="custom-input" id="login"  value="#{usuario.login}" required="true"/>  
-
-                <p:outputLabel styleClass="custom-input" for="senha"  value="Senha:"/>
-                <p:inputText styleClass="custom-input" id="senha"   value="#{usuario.senha}" required="true"/>  
-
+                <p:inputText styleClass="custom-input" id="login" value="#{usuarioBean.login}" required="true"/>  
+                <p:outputLabel styleClass="custom-input" for="senha" value="Senha:"/>
+                <p:inputText styleClass="custom-input" id="senha"  value="#{usuarioBean.senha}" required="true"/>  
                 <p:outputLabel styleClass="custom-input" for="email" value="Email:"/>
-                <p:inputText styleClass="custom-input" id="email" value="#{usuario.email}" required="true"/>  
-
-                <p:commandButton  value="Salvar" update="nome" styleClass="mt-3" action="#{usuario.atualizar()}" style="background: #F44B2A"/>
+                <p:inputText styleClass="custom-input" id="email" value="#{usuarioBean.email}" required="true"/>  
+                <p:commandButton  value="Salvar" styleClass="mt-3" action="#{usuarioBean.inserir()}" style="background: #F44B2A"/>
             </h:form>  
         </div>          
     </h:body>
