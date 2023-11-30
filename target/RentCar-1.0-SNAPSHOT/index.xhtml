@@ -23,25 +23,25 @@
 
             <h:form>
                 <p:outputLabel for="login" value="Login:"/>
-                <p:inputText id="login" styleClass="custom-input" value="#{clienteBean.login}" required="true"/>   
+                <p:inputText id="login" styleClass="custom-input" value="#{usuarioBean.login}" required="true"/>   
 
                 <p:outputLabel for="senha" value="Senha:"/>
-                <p:inputText type="password" id="senha" styleClass="custom-input" value="#{clienteBean.senha}" required="true"/>  
+                <p:inputText type="password" id="senha" styleClass="custom-input" value="#{usuarioBean.senha}" required="true"/>  
 
                 <c:choose>
-                    <c:when test = "${clienteBean.resultado}">  <!-- FAZENDO A REGRA DE NEGÓCIO DE LOGIN - AUTORIZANDO AO ENCONTRAR NO BANCO DE DADOS-->
-                        <p:outputLabel>Seja bem vindo #{clienteBean.login}!!</p:outputLabel> 
+                    <c:when test = "${usuarioBean.resultado}">  <!-- FAZENDO A REGRA DE NEGÓCIO DE LOGIN - AUTORIZANDO AO ENCONTRAR NO BANCO DE DADOS-->
+                        <p:outputLabel>Seja bem vindo #{usuarioBean.login}!!</p:outputLabel> 
                         <p:linkButton outcome="TelaPrincipal" value="Ir para pagina principal" style="margin-right:20px; background: #F44B2A" styleClass="custom-input"></p:linkButton>
                         
                         <p></p>
                         <p:linkButton outcome="index" value="Alterar Usuário" style="margin-right:20px;background: #F44B2A" styleClass="custom-input"></p:linkButton>
                         
                     </c:when>
-                    <c:when test = "${!clienteBean.resultado }"> <!-- NEGANDO AO NÃO ENCONTRAR NO BANCO DE DADOS -->
+                    <c:when test = "${!usuarioBean.resultado}"> <!-- NEGANDO AO NÃO ENCONTRAR NO BANCO DE DADOS -->
                         <p:outputLabel >Digite o seu Login e Senha</p:outputLabel>
-                        <p:commandButton  value="Entrar"  styleClass="mt-3" action="#{clienteBean.verificaLogin()}"  update="@form" style="background: #F44B2A"></p:commandButton>
+                        <p:commandButton  value="Entrar"  styleClass="mt-3" action="#{usuarioBean.verificaLogin()}"  update="@form" style="background: #F44B2A"></p:commandButton>
                         <p></p>
-                        <p:linkButton outcome="TelaCadastroCliente" value="Cadastrar" style="margin-right:20px; background: #F44B2A" styleClass="custom-input"></p:linkButton>
+                        <p:linkButton outcome="TelaCadastroUsuario" value="Cadastrar" style="margin-right:20px; background: #F44B2A" styleClass="custom-input"></p:linkButton>
                         <p></p>
                     </c:when>
                 </c:choose>

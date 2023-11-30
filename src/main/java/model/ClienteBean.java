@@ -18,8 +18,6 @@ import javax.faces.context.FacesContext;
 public class ClienteBean {
 
     private int id;
-    private String login;
-    private String senha;
     private String nome;
     private String endereco;
     private String uf;
@@ -42,8 +40,6 @@ public class ClienteBean {
         
        int id = Integer.parseInt(idParam);
        
-       login = buscarCliente(id).getLogin();
-       senha = buscarCliente(id).getSenha();
        nome = buscarCliente(id).getNome();
        endereco = buscarCliente(id).getEndereco();
        uf = buscarCliente(id).getUf();
@@ -55,8 +51,6 @@ public class ClienteBean {
 
     public void inserir() {
         cliB = new ClienteBean();
-        cliB.setLogin(login);
-        cliB.setSenha(senha);
         cliB.setNome(nome);
         cliB.setEmail(email);
         cliB.setEndereco(endereco);
@@ -73,8 +67,6 @@ public class ClienteBean {
         id = clienteDao.getIdByCpf(cpf);
         
         cliB.setId(id);
-        cliB.setLogin(login);
-        cliB.setSenha(senha);
         cliB.setNome(nome);
         cliB.setEmail(email);
         cliB.setEndereco(endereco);
@@ -88,18 +80,6 @@ public class ClienteBean {
     public void deletar(int id) {
         clienteDao.removeById(id);
     }
-
-    public boolean verificaLogin() {
-        cliB = new ClienteBean();
-
-        cliB.setLogin(login);
-        cliB.setSenha(senha);
-
-        resultado = clienteDao.verificaLogin(cliB);
-
-        return resultado;
-    }
-   
     public ArrayList<ClienteBean> obterLista() {
         lista = clienteDao.obterClientes(); // CRIANDO A LISTA PARA MANIPULAR OS DADOS
         return lista;       // RETORNANDO PRO FRONT
@@ -123,22 +103,6 @@ public class ClienteBean {
 
     public void setResultado(boolean resultado) {
         this.resultado = resultado;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public String getNome() {

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Tela usuario</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="style/TelaTabelaClientes.css"/>
+    </h:head>
+    <h:body  style="background: -webkit-linear-gradient(left, #054A74, #85cdfa, #054A74)">
+        <div id="voltar">
+            <p:commandLink id="backLink" onclick="history.go(-1)" title="Voltar">            
+                <i class="pi pi-arrow-left" style="margin-right: 5px; color: white; font-size: 20px;"></i>            
+            </p:commandLink>
+        </div>
+        <div class="card" style="background: #054A74">
+            <h:form id="form" style="background: #054A74">
+                <p:dataTable id="tbUsuario" var="usuario" value="#{usuarioBean.obterLista()}" styleClass="tabela" rowKey="#{usuario.id}" selectionMode="single">
+                    <f:facet name="header">
+                        <h:outputLabel><h1 class="tabela">TABELA DE CLIENTES</h1></h:outputLabel>
+                    </f:facet >
+                    <p:column headerText="Id" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{usuario.id}" class="content" style="color: white;" />  <!-- CONTEÚDO DE CADA COLUNA -->
+                    </p:column>
+                     <p:column headerText="Nome" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{usuario.nome}" class="content" style="color: white;" />  <!-- CONTEÚDO DE CADA COLUNA -->
+                    </p:column>
+                    <p:column headerText="Cargo" class="head" style="background: #054A74; color: white;">  <!-- CABEÇALHO DE CADA COLUNA-->
+                        <h:outputText value="#{usuario.cargo}" class="content" style="color: white;" />  <!-- CONTEÚDO DE CADA COLUNA -->
+                    </p:column>
+                    <p:column headerText="Login" class="head" style="background: #054A74; color: white;">
+                        <h:outputText value="#{usuario.login}" class="content" style="background: #054A74; color: white;"/>
+                    </p:column>
+                    <p:column headerText="Senha" class="head" style="background: #054A74; color: white;">
+                        <h:outputText value="#{usuario.senha}" class="content" style="background: #054A74; color: white;"/>
+                    </p:column>
+                    <p:column headerText="Email" class="head" style="background: #054A74; color: white;">
+                        <h:outputText value="#{usuario.email}" class="content" style="background: #054A74; color: white;"/>
+                    </p:column>
+                    <p:column headerText="Opções" class="head" style="background: #054A74; color: white;">                        
+                        <div id="opcoes">
+                            <div>
+                                <p:commandLink action="#{usuario.deletar(usuario.id)}" update="@form">                            
+                                    <i class="pi pi-trash" style="margin-right: 5px; color: white"></i>                             
+                                </p:commandLink> 
+                            </div>
+                            <div>
+                                <p:commandLink action="TelaAlterarUsuario" update="@form">                            
+                                    <i class="pi pi-pencil" style="margin-right: 5px; color: white;"></i>                            
+                                    <f:param name="id" value="#{usuario.id}"/>
+                                </p:commandLink>
+                            </div>
+                        </div>
+                    </p:column>
+                </p:dataTable>  
+                <div class="btns">
+                    <p:commandLink action="TelaCadastroUsuario">                        
+                        <i class="pi pi-plus" style="margin:1em 0.9em; font-size:1.5em; color: white;"></i>                        
+                    </p:commandLink>
+                </div>  
+            </h:form>
+        </div>
+    </h:body>
+</html>

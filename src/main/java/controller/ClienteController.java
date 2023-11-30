@@ -22,12 +22,10 @@ public class ClienteController {
     boolean resultado;
 
     public void salvar(ClienteBean cli) {
-        String sql = "INSERT INTO cliente (login,senha,nome,endereco,uf,telefone,cpf,email) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO cliente (nome,endereco,uf,telefone,cpf,email) VALUES (?,?,?,?,?,?)";
         try {
             connection = new ConnectionFactory().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, cli.getLogin());
-            ps.setString(2, cli.getSenha());
             ps.setString(3, cli.getNome());
             ps.setString(4, cli.getEndereco());
             ps.setString(5, cli.getUf());
@@ -43,37 +41,6 @@ public class ClienteController {
         }
     }
 
-    public boolean verificaLogin(ClienteBean cli) {
-
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-
-        try {
-
-            connection = new ConnectionFactory().getConnection();
-
-            String sql = "SELECT login FROM cliente WHERE login = ? And senha = ?";
-
-            statement = connection.prepareStatement(sql);
-            statement.setString(1, cli.getLogin());
-            statement.setString(2, cli.getSenha());
-            resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-               resultado = true;
-            } else if(!resultSet.next()){
-                resultado = false;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Erro de Login");
-        } finally {
-            ConnectionFactory.closeConnection(connection, statement, resultSet);
-        }
-        return resultado;
-    }
-
     public ArrayList<ClienteBean> obterClientes() {
         connection = new ConnectionFactory().getConnection(); // CRIANDO A CONEXÃO
 
@@ -87,8 +54,6 @@ public class ClienteController {
             while (rs.next()) {
                 ClienteBean clDTO = new ClienteBean();
                 clDTO.setId(rs.getInt("id"));
-                clDTO.setLogin(rs.getString("login"));
-                clDTO.setSenha(rs.getString("senha"));
                 clDTO.setNome(rs.getString("nome"));      // CRIANDO O OBJETO QUE RETORNA DO BANCO DE DADOS
                 clDTO.setEndereco(rs.getString("endereco"));
                 clDTO.setUf(rs.getString("uf"));
@@ -109,7 +74,7 @@ public class ClienteController {
     
      public void update(ClienteBean cliente) {
         
-        String sql = "UPDATE cliente SET login = ?, senha = ?, nome = ?, endereco = ?, uf = ?, telefone = ?, cpf = ?, email = ? WHERE id = ?";
+        String sql = "UPDATE cliente SET  nome = ?, endereco = ?, uf = ?, telefone = ?, cpf = ?, email = ? WHERE id = ?";
         
         Connection connection = null;
         PreparedStatement statement = null;
@@ -119,8 +84,6 @@ public class ClienteController {
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(sql);
             
-            statement.setString(1, cliente.getLogin());
-            statement.setString(2, cliente.getSenha());
             statement.setString(3, cliente.getNome());
             statement.setString(4, cliente.getEndereco());
             statement.setString(5, cliente.getUf());
@@ -184,8 +147,6 @@ public class ClienteController {
             ClienteBean cliente = new ClienteBean();
             
             cliente.setId(resultSet.getInt("id"));
-            cliente.setLogin(resultSet.getString("login"));
-            cliente.setSenha(resultSet.getString("senha"));
             cliente.setNome(resultSet.getString("nome"));
             cliente.setEndereco(resultSet.getString("endereco"));
             cliente.setUf(resultSet.getString("uf"));
