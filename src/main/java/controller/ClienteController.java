@@ -26,12 +26,12 @@ public class ClienteController {
         try {
             connection = new ConnectionFactory().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(3, cli.getNome());
-            ps.setString(4, cli.getEndereco());
-            ps.setString(5, cli.getUf());
-            ps.setString(6, cli.getTelefone());
-            ps.setString(7, cli.getCpf());
-            ps.setString(8, cli.getEmail());
+            ps.setString(1, cli.getNome());
+            ps.setString(2, cli.getEndereco());
+            ps.setString(3, cli.getUf());
+            ps.setString(4, cli.getTelefone());
+            ps.setString(5, cli.getCpf());
+            ps.setString(6, cli.getEmail());
 
             ps.execute();
             ps.close();
@@ -84,13 +84,16 @@ public class ClienteController {
             connection = ConnectionFactory.getConnection();
             statement = connection.prepareStatement(sql);
             
-            statement.setString(3, cliente.getNome());
-            statement.setString(4, cliente.getEndereco());
-            statement.setString(5, cliente.getUf());
-            statement.setString(6, cliente.getTelefone());
-            statement.setString(7, cliente.getCpf());
-            statement.setString(8, cliente.getEmail());
-            statement.setInt(9, cliente.getId());
+            statement.setString(1, cliente.getNome());
+            statement.setString(2, cliente.getEndereco());
+            statement.setString(3, cliente.getUf());
+            statement.setString(4, cliente.getTelefone());
+            statement.setString(5, cliente.getCpf());
+            statement.setString(6, cliente.getEmail());
+            statement.setInt(7, cliente.getId());
+            
+            System.out.println("Teste" + cliente.getNome() + " " + cliente.getEndereco() + " " +
+            " " + cliente.getUf() + " " + cliente.getTelefone() + " " + cliente.getCpf() + " " + cliente.getEmail() + " " +cliente.getId());
             
             statement.execute();
             
